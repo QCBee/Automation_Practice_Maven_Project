@@ -1,9 +1,7 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import utils.WebDriverFactory;
 import java.time.Duration;
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
@@ -27,7 +25,7 @@ public class LoginTest {
     String canAccessAccountLinkLocator = "forgotpassword";
     String forgorLoginFormLocator = "forgot-login";
 
-    @BeforeTest
+    @BeforeMethod
     public void setUp() {
         WebDriverFactory.createInstance("Chrome");
         driver = WebDriverFactory.getDriver();
@@ -97,7 +95,7 @@ public class LoginTest {
         assertEquals(forgotLoginFormIsPresent,true);
     }
 
-    @AfterTest
+    @AfterMethod
     public void tearDown(){
         driver.quit();
     }
