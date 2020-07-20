@@ -23,7 +23,7 @@ public class LoginTest {
     String loginIconLocator = ".aui-nav-link.login-link";
     String errorLoginNotificationLocator = "usernameerror";
     String canAccessAccountLinkLocator = "forgotpassword";
-    String forgorLoginFormLocator = "forgot-login";
+    String forgotLoginFormLocator = "forgot-login";
 
     @BeforeMethod
     public void setUp() {
@@ -42,6 +42,7 @@ public class LoginTest {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
         boolean userProfileIconIsPresent = wait.until(presenceOfElementLocated(By.cssSelector(userProfileIconLocator))).isDisplayed();
         assertEquals(userProfileIconIsPresent, true);
+
 
     }
 
@@ -91,7 +92,7 @@ public class LoginTest {
         driver.findElement(By.id(canAccessAccountLinkLocator)).click();
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
-        boolean forgotLoginFormIsPresent = wait.until(presenceOfElementLocated(By.id(forgorLoginFormLocator))).isDisplayed();
+        boolean forgotLoginFormIsPresent = wait.until(presenceOfElementLocated(By.id(forgotLoginFormLocator))).isDisplayed();
         assertEquals(forgotLoginFormIsPresent,true);
     }
 
