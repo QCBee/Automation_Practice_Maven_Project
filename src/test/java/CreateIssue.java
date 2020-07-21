@@ -38,7 +38,7 @@ public class CreateIssue {
     String summaryValueOnViewTicketLocator = "//h1[contains(text(),'Test Summary')]";
     String reporterValueOnViewJiraTicketLocator = "[alt = 'webinar5']";
     String typeIssueValueOnViewJiraTicketLocator = "[title='Task - A task that needs to be done.']";
-    String cancelButtonLocator = "[class = 'cancel']";
+    String cancelButtonLocator = "[title = 'Press undefined+` to cancel']";
 
     public CreateIssue() {
     }
@@ -116,7 +116,7 @@ public class CreateIssue {
     }
 
     @Test
-    public void cancelCreatingNewJiraTicket(){
+    public void cancelCreatingNewJiraTicketAfterFillingOutAllRequiredFieldsTest(){
         driver.findElement(By.id(createIssueButtonOnDashboardLocator)).click();
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(70).getSeconds());
@@ -150,16 +150,20 @@ public class CreateIssue {
         driver.findElement(By.id(summaryInputLocator)).sendKeys(summaryValue);
         driver.findElement(By.id(reporterInputLocator)).clear();
         driver.findElement(By.id(reporterInputLocator)).sendKeys(reporterValue);
-        driver.findElement(By.id(reporterInputLocator)).sendKeys(Keys.ENTER);
         driver.findElement(By.cssSelector(cancelButtonLocator)).click();
-        //TODO Add navigation in browser window
+
+
+        driver.switchTo().alert().accept();
+
+        //TODO Add asserts for showing alert window
+        //TODO Add asserts for NOT sjowinf create issue pop-up
 
     }
     //TODO Add test for successful create flow for all fields (non required + required)
     //TODO Add test for unsuccessful flow (validation for required fields)
 
-    @AfterMethod
-    public void tearDown() {
-        driver.quit();
-    }
+//    @AfterMethod
+//    public void tearDown() {
+//        driver.quit();
+//    }
 }
