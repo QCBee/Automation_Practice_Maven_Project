@@ -47,10 +47,6 @@ public class CreateIssue {
     String descriptionValueOnViewTicketPageLocator = "[contains(text(),'Test description')]";
     String textModeOnDescriptionLocator = "[data-mode = 'source']";
 
-
-    public CreateIssue() {
-    }
-
     @BeforeMethod
     public void setUp() {
         WebDriverFactory.createInstance("Chrome");
