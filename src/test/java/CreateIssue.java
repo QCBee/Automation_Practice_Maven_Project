@@ -33,7 +33,11 @@ public class CreateIssue {
     String createButtonLocator = "create-issue-submit";
     String issueCreatedNotificationLocator = "aui-flag-container";
     String linkToCreatedIssueLocator = "//*[contains(text(),' - Test Summary')]";
+    String viewIssuePageLocator = ".issue-navigator";
+    String projectValueOnViewTicketLocator = "//*[@id='project-name-val'][@href='/browse/WEBINAR']";
     String summaryValueOnViewTicketLocator = "//h1[contains(text(),'Test Summary')]";
+    String reporterValueOnViewJiraTicketLocator = "[alt = 'webinar5']";
+    String typeIssueValueOnViewJiraTicketLocator = "[title='Task - A task that needs to be done.']";
 
     public CreateIssue() {
     }
@@ -55,9 +59,11 @@ public class CreateIssue {
     @Test
     public void successfulCreateStoryWithRequiredFieldsTest() {
         driver.findElement(By.id(createIssueButtonOnDashboardLocator)).click();
+
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(70).getSeconds());
         boolean createIssuePopUpIsPresent = (wait.until(ExpectedConditions.presenceOfElementLocated(By.id(createIssuePopPupLocator)))).isEnabled();
         Assert.assertEquals(createIssuePopUpIsPresent, true);
+
         driver.findElement(By.id(projectInputLocator)).clear();
         driver.findElement(By.id(projectInputLocator)).sendKeys(projectNameValue);
         driver.findElement(By.id(projectInputLocator)).sendKeys(Keys.ENTER);
@@ -87,10 +93,29 @@ public class CreateIssue {
         driver.findElement(By.id(reporterInputLocator)).sendKeys(reporterValue);
         driver.findElement(By.id(reporterInputLocator)).sendKeys(Keys.ENTER);
         driver.findElement(By.id(createButtonLocator)).click();
+
         boolean createIssueNotificationIsPresent = wait.until(ExpectedConditions.presenceOfElementLocated(By.id(issueCreatedNotificationLocator))).isEnabled();
         Assert.assertEquals(createIssueNotificationIsPresent, true);
+
         driver.findElement(By.xpath(linkToCreatedIssueLocator)).click();
+        boolean viewJiraTicketPageIsPresent = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(viewIssuePageLocator))).isDisplayed();
+        Assert.assertEquals(viewJiraTicketPageIsPresent,true);
+
+        boolean doProjectValueMatch = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(projectValueOnViewTicketLocator))).isDisplayed();
+        Assert.assertEquals(doProjectValueMatch,true);
+
+        boolean doSummaruValueMatch = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(summaryValueOnViewTicketLocator))).isDisplayed();
+        Assert.assertEquals(doSummaruValueMatch,true);
+
+        boolean doTypeIssueValueMatch = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(typeIssueValueOnViewJiraTicketLocator))).isDisplayed();
+        Assert.assertEquals(doTypeIssueValueMatch,true);
+
+        boolean doReporterValueMatch = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(reporterValueOnViewJiraTicketLocator))).isDisplayed();
+        Assert.assertEquals(doReporterValueMatch,true);
     }
+    //TODO Add test for successful create flow for all fields (non required + required)
+    //TODO Add test for cancel flow for creation
+    //TODO Add test for unsuccessful flow (validation for required fields)
 
     @AfterMethod
     public void tearDown() {
