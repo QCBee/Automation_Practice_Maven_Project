@@ -51,7 +51,6 @@ public class CreateIssue {
     public void setUp() {
         WebDriverFactory.createInstance("Chrome");
         driver = WebDriverFactory.getDriver();
-        driver = WebDriverFactory.getDriver();
         driver.get(loginURL);
         driver.findElement(By.id(usernameLoginLocator)).sendKeys(validUsernameTestData);
         driver.findElement(By.id(userpasswordLoginLocator)).sendKeys(validUserPasswordTestData);
