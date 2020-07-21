@@ -120,6 +120,49 @@ public class CreateIssue {
         driver.findElement(By.id(createIssueButtonOnDashboardLocator)).click();
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(70).getSeconds());
+        boolean createIssuePopUpIsPresent = wait.until(ExpectedConditions.presenceOfElementLocated(By.id(createIssuePopPupLocator))).isEnabled();
+        Assert.assertEquals(createIssuePopUpIsPresent, true);
+
+        driver.findElement(By.id(projectInputLocator)).clear();
+        driver.findElement(By.id(projectInputLocator)).sendKeys(projectNameValue);
+        driver.findElement(By.id(projectInputLocator)).sendKeys(Keys.ENTER);
+        driver.findElement(By.id(issueTypeInputLocator)).isEnabled();
+        driver.findElement(By.id(issueTypeInputLocator)).click();
+
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        driver.findElement(By.id(issueTypeInputLocator)).clear();
+        driver.findElement(By.id(issueTypeInputLocator)).sendKeys(issueTypeValue);
+        driver.findElement(By.id(issueTypeInputLocator)).sendKeys(Keys.ENTER);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id(summaryInputLocator))).isEnabled();
+        driver.findElement(By.id(summaryInputLocator)).click();
+
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        driver.findElement(By.id(summaryInputLocator)).sendKeys(summaryValue);
+        driver.findElement(By.id(reporterInputLocator)).clear();
+        driver.findElement(By.id(reporterInputLocator)).sendKeys(reporterValue);
+        driver.findElement(By.cssSelector(cancelButtonLocator)).click();
+        driver.switchTo().alert().accept();
+
+        //TODO Add asserts for showing alert window
+        //TODO Add asserts for NOT showinf create issue pop-up
+
+    }
+
+    @Test
+    public void returnCreatingNewJiraTicketTest(){
+        driver.findElement(By.id(createIssueButtonOnDashboardLocator)).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(70).getSeconds());
         boolean createIssuePopUpIsPresent = (wait.until(ExpectedConditions.presenceOfElementLocated(By.id(createIssuePopPupLocator)))).isEnabled();
         Assert.assertEquals(createIssuePopUpIsPresent, true);
 
@@ -151,16 +194,28 @@ public class CreateIssue {
         driver.findElement(By.id(reporterInputLocator)).clear();
         driver.findElement(By.id(reporterInputLocator)).sendKeys(reporterValue);
         driver.findElement(By.cssSelector(cancelButtonLocator)).click();
+        driver.switchTo().alert().dismiss();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id(createIssuePopPupLocator))).isEnabled();
+        Assert.assertEquals(createIssuePopUpIsPresent, true);
+        //TODO Add verification values in filled fields
+    }
+    @Test
+    public void closeCreateTicketPopUpWithoutEnteringAnyDataTest(){
+        driver.findElement(By.id(createIssueButtonOnDashboardLocator)).click();
 
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(70).getSeconds());
+        boolean createIssuePopUpIsPresent = (wait.until(ExpectedConditions.presenceOfElementLocated(By.id(createIssuePopPupLocator)))).isEnabled();
+        Assert.assertEquals(createIssuePopUpIsPresent, true);
 
-        driver.switchTo().alert().accept();
-
-        //TODO Add asserts for showing alert window
-        //TODO Add asserts for NOT sjowinf create issue pop-up
+        driver.findElement(By.cssSelector(cancelButtonLocator)).click();
+        //TODO Add verification for closed pop-up. Read about invisibilityOf method
 
     }
     //TODO Add test for successful create flow for all fields (non required + required)
     //TODO Add test for unsuccessful flow (validation for required fields)
+
+
+
 
 //    @AfterMethod
 //    public void tearDown() {
