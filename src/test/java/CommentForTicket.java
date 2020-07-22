@@ -49,6 +49,51 @@ public class CommentForTicket {
         Assert.assertEquals(userProfileIconIsPresent, true);
 
     }
+    @Test
+    public void createCommentToTicketTest(){
+        driver.get(ticketUrl);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40).getSeconds());
+        boolean isCommentTabSelected = wait.until(ExpectedConditions.presenceOfElementLocated(By.id(commentTabLocator))).isDisplayed();
+        Assert.assertEquals(isCommentTabSelected,true);
+        boolean isAddCommentFooterButtonEnabled = wait.until(ExpectedConditions.presenceOfElementLocated(By.id(addCommentFooterButtonLocator))).isEnabled();
+        Assert.assertEquals(isAddCommentFooterButtonEnabled,true);
+        boolean isAnyCommentAdded = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(anyAddedCommentsAreaLocator))).isDisplayed();
+        Assert.assertEquals(isAnyCommentAdded,true);
+
+        driver.findElement(By.id(addCommentFooterButtonLocator)).click();
+        boolean isAddCommentAreaShown = wait.until(ExpectedConditions.presenceOfElementLocated(By.id(commentInputLocator))).isEnabled();
+        Assert.assertEquals(isAddCommentAreaShown, true);
+        boolean isAddCommentFooterButtonDisabled = wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id(addCommentFooterButtonLocator)));
+        Assert.assertEquals(isAddCommentFooterButtonDisabled,true);
+        boolean isAddCommentButtonDisabled = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(addCommentButtonDisabledLocator))).isDisplayed();
+        Assert.assertEquals(isAddCommentButtonDisabled,true);
+        boolean isCancelButtonEnabled = wait.until(ExpectedConditions.presenceOfElementLocated(By.id(cancelAddCommentButtonLocator))).isDisplayed();
+        Assert.assertEquals(isCancelButtonEnabled,true);
+
+        driver.findElement(By.xpath(textModeLocator)).click();
+        boolean isTextModeSelected = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(textModeLocator))).isEnabled();
+        Assert.assertTrue(isTextModeSelected);
+
+        driver.findElement(By.id(commentInputLocator)).sendKeys(commentValue);
+        boolean isAddCommentButtonEnabled = wait.until(ExpectedConditions.presenceOfElementLocated(By.id(addCommentButtonEnabledLocator))).isEnabled();
+        Assert.assertEquals(isAddCommentButtonEnabled,true);
+
+        driver.findElement(By.id(addCommentButtonEnabledLocator)).click();
+        boolean isLogIssueAreaShown = wait.until(ExpectedConditions.presenceOfElementLocated(By.id(logsAreaIssueLocator))).isDisplayed();
+        Assert.assertEquals(isLogIssueAreaShown,true);
+        boolean isCommentAdded = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(addedCommentValue))).isDisplayed();
+        Assert.assertEquals(isCommentAdded, true);
+
+        driver.findElement(By.xpath(deleteIconLocator)).click();
+
+        driver.findElement(By.id(deleteButtonOnPopUpLocator)).click();
+
+        boolean isUpdateIssueNotificationShown = wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(updateIssueNotificationLocator)));
+        Assert.assertEquals(isUpdateIssueNotificationShown,true);
+        Assert.assertEquals(isAnyCommentAdded,true);
+
+
+    }
 
     @Test
     public void deleteCommentFromTicketTest(){
@@ -235,43 +280,6 @@ public class CommentForTicket {
         Assert.assertEquals(isCancelButtonEnabled,true);
         boolean isUpdateNotificationNotShown = wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(updateIssueNotificationLocator)));
         Assert.assertEquals(isUpdateNotificationNotShown,true);
-
-    }
-
-    @Test
-    public void createCommentToTicketTest(){
-        driver.get(ticketUrl);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40).getSeconds());
-        boolean isCommentTabSelected = wait.until(ExpectedConditions.presenceOfElementLocated(By.id(commentTabLocator))).isDisplayed();
-        Assert.assertEquals(isCommentTabSelected,true);
-        boolean isAddCommentFooterButtonEnabled = wait.until(ExpectedConditions.presenceOfElementLocated(By.id(addCommentFooterButtonLocator))).isEnabled();
-        Assert.assertEquals(isAddCommentFooterButtonEnabled,true);
-        boolean isAnyCommentAdded = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(anyAddedCommentsAreaLocator))).isDisplayed();
-        Assert.assertEquals(isAnyCommentAdded,true);
-
-        driver.findElement(By.id(addCommentFooterButtonLocator)).click();
-        boolean isAddCommentAreaShown = wait.until(ExpectedConditions.presenceOfElementLocated(By.id(commentInputLocator))).isEnabled();
-        Assert.assertEquals(isAddCommentAreaShown, true);
-        boolean isAddCommentFooterButtonDisabled = wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id(addCommentFooterButtonLocator)));
-        Assert.assertEquals(isAddCommentFooterButtonDisabled,true);
-        boolean isAddCommentButtonDisabled = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(addCommentButtonDisabledLocator))).isDisplayed();
-        Assert.assertEquals(isAddCommentButtonDisabled,true);
-        boolean isCancelButtonEnabled = wait.until(ExpectedConditions.presenceOfElementLocated(By.id(cancelAddCommentButtonLocator))).isDisplayed();
-        Assert.assertEquals(isCancelButtonEnabled,true);
-
-        driver.findElement(By.xpath(textModeLocator)).click();
-        boolean isTextModeSelected = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(textModeLocator))).isEnabled();
-        Assert.assertTrue(isTextModeSelected);
-
-        driver.findElement(By.id(commentInputLocator)).sendKeys(commentValue);
-        boolean isAddCommentButtonEnabled = wait.until(ExpectedConditions.presenceOfElementLocated(By.id(addCommentButtonEnabledLocator))).isEnabled();
-        Assert.assertEquals(isAddCommentButtonEnabled,true);
-
-        driver.findElement(By.id(addCommentButtonEnabledLocator)).click();
-        boolean isLogIssueAreaShown = wait.until(ExpectedConditions.presenceOfElementLocated(By.id(logsAreaIssueLocator))).isDisplayed();
-        Assert.assertEquals(isLogIssueAreaShown,true);
-        boolean isCommentAdded = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(addedCommentValue))).isDisplayed();
-        Assert.assertEquals(isCommentAdded, true);
 
     }
 
