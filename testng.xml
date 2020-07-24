@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="CreateIssue" parallel="false">
+
+    <test name="CreateIssue">
+
+        <classes>
+            <class name="CreateIssue"/>
+        </classes>
+    </test>
+
+    <listeners>
+        <listener class-name="utils.TestNJListeners"/>
+    </listeners>
+
+</suite>
