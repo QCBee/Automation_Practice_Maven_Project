@@ -1,4 +1,3 @@
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -6,9 +5,6 @@ import pages.HomePage;
 import pages.LoginPage;
 import pages.TicketPage;
 import utils.WebDriverFactory;
-
-import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
-import static org.testng.Assert.assertEquals;
 
 public class TicketTest {
     WebDriver driver =null;
@@ -39,7 +35,7 @@ public class TicketTest {
         homePage = new HomePage(driver);
         ticketPage = new TicketPage(driver);
 
-        loginPage.navigateToPage(loginURL);
+        loginPage.navigateToLoginPage(loginURL);
         loginPage.enterUserName(validUsernameTestData);
         loginPage.enterUserPassword(validUserPasswordTestData);
         loginPage.clickLoginButton();

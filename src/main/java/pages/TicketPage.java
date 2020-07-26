@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -30,6 +31,14 @@ public class TicketPage {
     private By resolutionIssueField = By.id("resolution-val");
     private By descriptionArea = By.id("description-val");
     private By descriptionLabel = By.id("descriptionmodule_heading");
+
+    private By viewIssuePage = By.cssSelector(".issue-navigator");
+    private By projectValue = By.xpath("//*[@id='project-name-val'][@href='/browse/WEBINAR']");
+    private By summaryValue = By.xpath("//h1[contains(text(),'Test Summary')]");
+    private By reporterValue  = By.cssSelector("[alt = 'webinar5']");
+    private By typeIssueValue = By.cssSelector("[title='Task - A task that needs to be done.']");
+    private By priorityValue = By.cssSelector("[title = 'Lowest - Trivial problem with little or no impact on progress.']");
+    private By descriptionValue = By.xpath("[contains(text(),'Test description')]");
 
 
     public void navigateToTicketPage(String ticketUrl){
@@ -106,5 +115,38 @@ public class TicketPage {
         return wait.until(presenceOfElementLocated(descriptionLabel)).isDisplayed();
     }
 
+    public boolean isViewIssuePageShown(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        return wait.until(ExpectedConditions.presenceOfElementLocated(viewIssuePage)).isDisplayed();
+    }
 
+    public boolean doProjectValueMatch(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        return wait.until(ExpectedConditions.presenceOfElementLocated(projectValue)).isDisplayed();
+    }
+
+    public boolean doSummaryValueMatch(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        return wait.until(ExpectedConditions.presenceOfElementLocated(summaryValue)).isDisplayed();
+    }
+
+    public boolean doTypeIssueValueMatch(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        return wait.until(ExpectedConditions.presenceOfElementLocated(typeIssueValue)).isDisplayed();
+    }
+
+    public boolean doReporterValueMatch(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        return wait.until(ExpectedConditions.presenceOfElementLocated(reporterValue)).isDisplayed();
+    }
+
+    public boolean doPriorityValueMatch(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        return wait.until(ExpectedConditions.presenceOfElementLocated(priorityValue)).isDisplayed();
+    }
+
+    public boolean doDescriptionValueMatch(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        return wait.until(ExpectedConditions.presenceOfElementLocated(descriptionValue)).isDisplayed();
+    }
 }

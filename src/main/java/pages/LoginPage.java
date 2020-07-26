@@ -34,8 +34,8 @@ public class LoginPage {
         driver.findElement(loginButton).click();
     }
 
-    public void navigateToPage(String url){
-        driver.get(url);
+    public void navigateToLoginPage(String loginUrl){
+        driver.get(loginUrl);
     }
 
     public void clickCanAccessAccountLink(){
