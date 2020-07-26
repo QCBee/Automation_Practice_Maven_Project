@@ -51,34 +51,45 @@ public class CreateIssue {
     public void createTicketWithRequiredFieldsTest() {
         homePage.clickCreateIssueButton();
         Assert.assertTrue(createIssuePage.isCreateIssuePopUpShown());
+
         createIssuePage.enterProject(projectNameValue);
         Assert.assertTrue(createIssuePage.isTypeIssueInputEnabled());
+
         createIssuePage.enterTypeIssue(issueTypeValue);
         Assert.assertTrue(createIssuePage.isSummaryInputEnabled());
+
         createIssuePage.enterSummary(summaryValue);
+
         createIssuePage.enterReporter(reporterValue);
+
         createIssuePage.clickCreateButton();
         Assert.assertTrue(homePage.isIssueCreateNotificationShown());
+
         homePage.clickIssueLinkOnNotification();
-        ticketPage.isViewIssuePageShown();
+        Assert.assertTrue(ticketPage.isViewIssuePageShown());
         Assert.assertTrue(ticketPage.doProjectValueMatch());
         Assert.assertTrue(ticketPage.doSummaryValueMatch());
         Assert.assertTrue(ticketPage.doTypeIssueValueMatch());
         Assert.assertTrue(ticketPage.doReporterValueMatch());
-
     }
 
     @Test
     public void cancelCreatingTicketAfterFillingOutAllRequiredFieldsTest(){
         homePage.clickCreateIssueButton();
         Assert.assertTrue(createIssuePage.isCreateIssuePopUpShown());
+
         createIssuePage.enterProject(projectNameValue);
         Assert.assertTrue(createIssuePage.isTypeIssueInputEnabled());
+
         createIssuePage.enterTypeIssue(issueTypeValue);
         Assert.assertTrue(createIssuePage.isSummaryInputEnabled());
+
         createIssuePage.enterSummary(summaryValue);
+
         createIssuePage.enterReporter(reporterValue);
+
         createIssuePage.clickCancelButton();
+
         createIssuePage.acceptAlert();
 
         //TODO Add asserts for showing alert window
@@ -90,12 +101,17 @@ public class CreateIssue {
     public void returnCreatingTicketTest(){
         homePage.clickCreateIssueButton();
         Assert.assertTrue(createIssuePage.isCreateIssuePopUpShown());
+
         createIssuePage.enterProject(projectNameValue);
         Assert.assertTrue(createIssuePage.isTypeIssueInputEnabled());
+
         createIssuePage.enterTypeIssue(issueTypeValue);
         Assert.assertTrue(createIssuePage.isSummaryInputEnabled());
+
         createIssuePage.enterSummary(summaryValue);
+
         createIssuePage.enterReporter(reporterValue);
+
         createIssuePage.dismissAlert();
         Assert.assertTrue(createIssuePage.isCreateIssuePopUpShown());
         Assert.assertTrue(createIssuePage.doProjectNameValueMatch(projectNameValue));
@@ -108,6 +124,7 @@ public class CreateIssue {
     public void closeCreateTicketPopUpWithoutEnteringAnyDataTest(){
         homePage.clickCreateIssueButton();
         Assert.assertTrue(createIssuePage.isCreateIssuePopUpShown());
+
         createIssuePage.clickCancelButton();
         Assert.assertTrue(createIssuePage.isCreateIssuePopUpNotShown());
 
@@ -117,17 +134,26 @@ public class CreateIssue {
     public void createTicketWithAllFieldsTest(){
         homePage.clickCreateIssueButton();
         Assert.assertTrue(createIssuePage.isCreateIssuePopUpShown());
+
         createIssuePage.enterProject(projectNameValue);
         Assert.assertTrue(createIssuePage.isTypeIssueInputEnabled());
+
         createIssuePage.enterTypeIssue(issueTypeValue);
         Assert.assertTrue(createIssuePage.isSummaryInputEnabled());
+
         createIssuePage.enterSummary(summaryValue);
+
         createIssuePage.enterReporter(reporterValue);
+
         createIssuePage.selectTextModeForDescriptionInput();
+
         createIssuePage.enterDescription(descriptionValue);
+
         createIssuePage.enterPriorityInput(priorityValue);
+
         createIssuePage.clickCreateButton();
         Assert.assertTrue(homePage.isIssueCreateNotificationShown());
+
         homePage.clickIssueLinkOnNotification();
         Assert.assertTrue(ticketPage.isViewIssuePageShown());
         Assert.assertTrue(ticketPage.doProjectValueMatch());
@@ -136,7 +162,6 @@ public class CreateIssue {
         Assert.assertTrue(ticketPage.doReporterValueMatch());
         Assert.assertTrue(ticketPage.doPriorityValueMatch());
         Assert.assertTrue(ticketPage.doDescriptionValueMatch());
-
     }
 
     @Test

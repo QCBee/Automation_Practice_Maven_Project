@@ -30,8 +30,11 @@ public class LoginTest {
     @Test
     public void successfulLoginTest(){
         loginPage.navigateToLoginPage(loginURL);
+
         loginPage.enterUserName(validUsernameTestData);
+
         loginPage.enterUserPassword(validUserPasswordTestData);
+
         loginPage.clickLoginButton();
         Assert.assertTrue(homePage.isUserProfileIconShown());
     }
@@ -39,6 +42,7 @@ public class LoginTest {
     @Test
     public void loginWithBothEmptyFieldsTest(){
         loginPage.navigateToLoginPage(loginURL);
+
         loginPage.clickLoginButton();
         Assert.assertTrue(loginPage.isErrorNotificationShown());
         Assert.assertTrue(loginPage.isLoginIconShown());
@@ -47,7 +51,9 @@ public class LoginTest {
     @Test
     public void loginWithEmptyUserNameTest(){
         loginPage.navigateToLoginPage(loginURL);
+
         loginPage.enterUserPassword(validUserPasswordTestData);
+
         loginPage.clickLoginButton();
         Assert.assertTrue(loginPage.isErrorNotificationShown());
         Assert.assertTrue(loginPage.isLoginIconShown());
@@ -56,7 +62,9 @@ public class LoginTest {
     @Test
     public void loginWithEmptyPasswordTest(){
         loginPage.navigateToLoginPage(loginURL);
+
         loginPage.enterUserName(validUsernameTestData);
+
         loginPage.clickLoginButton();
         Assert.assertTrue(loginPage.isErrorNotificationShown());
         Assert.assertTrue(loginPage.isLoginIconShown());
@@ -65,6 +73,7 @@ public class LoginTest {
     @Test
     public void openResetPasswordPageFromLoginFormTest(){
         loginPage.navigateToLoginPage(loginURL);
+
         loginPage.clickCanAccessAccountLink();
         Assert.assertTrue(forgotLoginPage.isForgotLoginFormShown());
     }
