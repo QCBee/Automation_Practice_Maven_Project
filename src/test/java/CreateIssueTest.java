@@ -10,7 +10,7 @@ import pages.LoginPage;
 import pages.TicketPage;
 import utils.WebDriverFactory;
 
-public class CreateIssue {
+public class CreateIssueTest {
     WebDriver driver = null;
     LoginPage loginPage = null;
     HomePage homePage = null;
