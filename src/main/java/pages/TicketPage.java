@@ -4,10 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-
 import java.time.Duration;
-
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
 
 public class TicketPage {
@@ -20,19 +17,47 @@ public class TicketPage {
     //List of used locators
     private By projectAvatar = By.id("project-avatar");
     private By linkIssue = By.cssSelector("[href = '/browse/WEBINAR-12303']");
+
+    //Buttons on Command Bar
     private By editButtonOnCommandBar = By.id("edit-issue");
     private By commentButtonOnCommandBar = By.id("comment-issue");
     private By assignButtonOnCommandBar = By.id("assign-issue");
     private By moreDropDownButtonOnCommandBar = By.id("opsbar-operations_more");
+    private By backlogButtonOnCommandBar = By.xpath("//*[contains(text(),'Backlog')][@class='trigger-label']");
+    private By selectedForDevelopmentButtonOnCommandBar = By.xpath("//*[contains(text(),'Selected for Development')][@class='trigger-label']");
     private By workflowButtonOnCommandBar = By.id("opsbar-transitions_more");
+    private By shareButtonOnCommandBar = By.id("jira-share-trigger");
+    private By exportButtonOnCommandBar = By.id("viewissue-export");
+
+    //Details section
     private By detailsLabel = By.id("details-module_heading");
     private By typeIssueField = By.id("type-val");
     private By priorityIssueField = By.id("priority-val");
+    private By labelsIssueField = By.id("wrap-labels");
     private By statusIssueField = By.id("status-val");
     private By resolutionIssueField = By.id("resolution-val");
+
+    //Description section
     private By descriptionArea = By.id("description-val");
     private By descriptionLabel = By.id("descriptionmodule_heading");
 
+    //Attachment section
+    private By attachmentLabel = By.id("attachmentmodule_heading");
+    private By attachmentArea = By.xpath("//*[contains(text(),' Drop files to attach, or ')]");
+    private By browseLinkOnAttachmentArea = By.xpath("//*[@type='button'][contains(text(),' browse')]");
+    private By moreButtonAttachmentSection = By.xpath("//*[@title = 'Options']");
+
+    //Activity section
+    private By activityLabel = By.id("activitymodule_heading");
+    private By allTabNotSelected = By.xpath("//*[@id='all-tabpanel'][contains(text(),'All')]");
+    private By commentTab = By.id("comment-tabpanel");
+    private By addCommentFooterButton = By.id("footer-comment-button");
+    private By workLogTabNotSelected = By.xpath("//*[@id='worklog-tabpanel'][contains(text(),'Work Log')]");
+    private By historyTabNotSelected = By.xpath("//*[@id='changehistory-tabpanel'][contains(text(),'History')]");
+    private By activityTabNotSelected = By.xpath("//*[@id='activity-stream-issue-tab'][contains(text(),'Activity')]");
+    private By jigitTabNotSelected = By.xpath("//*[@id ='jigit-tab-panel'][contains(text(),'Jigit')]");
+
+    //Locators for verification content in sections
     private By viewIssuePage = By.cssSelector(".issue-navigator");
     private By projectValue = By.xpath("//*[@id='project-name-val'][@href='/browse/WEBINAR']");
     private By summaryValue = By.xpath("//h1[contains(text(),'Test Summary')]");
@@ -41,8 +66,7 @@ public class TicketPage {
     private By priorityValue = By.cssSelector("[title = 'Lowest - Trivial problem with little or no impact on progress.']");
     private By descriptionValue = By.xpath("[contains(text(),'Test description')]");
 
-    private By commentTab = By.id("comment-tabpanel");
-    private By addCommentFooterButton = By.id("footer-comment-button");
+    //Locators for comment section
     private By commentInput = By.id("comment");
     private By addCommentButtonEnabled = By.id("issue-comment-add-submit");
     private By addCommentButtonDisabled = By.xpath("//*[@id='issue-comment-add-submit' and @disabled = 'disabled']");
@@ -89,9 +113,29 @@ public class TicketPage {
         return wait.until(presenceOfElementLocated(moreDropDownButtonOnCommandBar)).isDisplayed();
     }
 
+    public boolean isBacklogButtonOnCommandBarShown(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        return wait.until(presenceOfElementLocated(backlogButtonOnCommandBar)).isDisplayed();
+    }
+
+    public boolean isSelectedForDevelopmentButtonShown(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        return wait.until(presenceOfElementLocated(selectedForDevelopmentButtonOnCommandBar)).isDisplayed();
+    }
+
     public boolean isWorkflowButtonOnCommandBarShown(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
         return wait.until(presenceOfElementLocated(workflowButtonOnCommandBar)).isDisplayed();
+    }
+
+    public boolean isShareButtonOncommandBarShown(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        return wait.until(presenceOfElementLocated(shareButtonOnCommandBar)).isDisplayed();
+    }
+
+    public boolean isExportButtonOnCommandBarShown(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        return wait.until(presenceOfElementLocated(exportButtonOnCommandBar)).isDisplayed();
     }
 
     public boolean isDetailsLabelShown(){
@@ -107,6 +151,11 @@ public class TicketPage {
     public boolean isPriorityIssueFieldShown(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
         return wait.until(presenceOfElementLocated(priorityIssueField)).isDisplayed();
+    }
+
+    public boolean isLabelsIssueFieldShown(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        return wait.until(presenceOfElementLocated(labelsIssueField)).isDisplayed();
     }
 
     public boolean isStatusIssueFieldShown(){
@@ -127,6 +176,56 @@ public class TicketPage {
     public boolean isDescriptionLabelShown(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
         return wait.until(presenceOfElementLocated(descriptionLabel)).isDisplayed();
+    }
+
+    public boolean isAttachmentLabelShown(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        return wait.until(presenceOfElementLocated(attachmentLabel)).isDisplayed();
+    }
+
+    public boolean isMoreButtonForAttachmentSectionShown(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        return wait.until(presenceOfElementLocated(moreButtonAttachmentSection)).isDisplayed();
+    }
+
+    public boolean isAttachmentAreaShown(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        return wait.until(presenceOfElementLocated(attachmentArea)).isDisplayed();
+    }
+
+    public boolean isBrowseButtonShownOnAttachmentArea(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        return wait.until(presenceOfElementLocated(browseLinkOnAttachmentArea)).isDisplayed();
+    }
+
+    public boolean isActivitySectionShown(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        return wait.until(presenceOfElementLocated(activityLabel)).isDisplayed();
+    }
+
+    public boolean isAllTabNotSelectedShown(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        return wait.until(presenceOfElementLocated(allTabNotSelected)).isDisplayed();
+    }
+
+    public boolean isWorkLogTabNotSelectedShown(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        return wait.until(presenceOfElementLocated(workLogTabNotSelected)).isDisplayed();
+    }
+
+    public boolean isHistoryTabNotSelectedShown(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        return wait.until(presenceOfElementLocated(historyTabNotSelected)).isDisplayed();
+    }
+
+    public boolean isActivityTabNotSelectedShown(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        return wait.until(presenceOfElementLocated(activityTabNotSelected)).isDisplayed();
+    }
+
+    public boolean isJigitTabNotSelectedShown(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        return wait.until(presenceOfElementLocated(jigitTabNotSelected)).isDisplayed();
     }
 
     public boolean isViewIssuePageShown(){
