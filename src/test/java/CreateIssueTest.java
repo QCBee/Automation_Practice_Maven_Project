@@ -51,17 +51,14 @@ public class CreateIssueTest {
     public void createTicketWithRequiredFieldsTest() {
         homePage.clickCreateIssueButton();
         Assert.assertTrue(createIssuePage.isCreateIssuePopUpShown());
-
-        createIssuePage.enterProject(projectNameValue);
+        Assert.assertTrue(createIssuePage.isProjectInputEnabled());
         Assert.assertTrue(createIssuePage.isTypeIssueInputEnabled());
-
-        createIssuePage.enterTypeIssue(issueTypeValue);
         Assert.assertTrue(createIssuePage.isSummaryInputEnabled());
 
+        createIssuePage.enterProject(projectNameValue);
+        createIssuePage.enterTypeIssue(issueTypeValue);
         createIssuePage.enterSummary(summaryValue);
-
         createIssuePage.enterReporter(reporterValue);
-
         createIssuePage.clickCreateButton();
         Assert.assertTrue(homePage.isIssueCreateNotificationShown());
 
@@ -164,11 +161,11 @@ public class CreateIssueTest {
         Assert.assertTrue(ticketPage.doDescriptionValueMatch());
     }
 
-    @Test
-    public void unsuccessfulCreateTicketTest(){
-        //TODO Add test for unsuccessful flow (validation for required fields)
-
-    }
+//    @Test
+//    public void unsuccessfulCreateTicketTest(){
+//        //TODO Add test for unsuccessful flow (validation for required fields)
+//
+//    }
 
     @AfterMethod
     public void tearDown() {
