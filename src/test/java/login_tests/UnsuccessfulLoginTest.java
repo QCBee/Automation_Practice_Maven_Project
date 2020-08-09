@@ -2,10 +2,7 @@ package login_tests;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pages.LoginPage;
 import utils.WebDriverFactory;
 
@@ -22,9 +19,11 @@ public class UnsuccessfulLoginTest {
     String emptyUserNameTestData = "";
     String emptyUserPasswordTestData = "";
 
+    @Parameters({"browserName"})
     @BeforeMethod
-    public void setUp() {
-        WebDriverFactory.createInstance("Chrome");
+    public void setUp(String browserName) {
+        WebDriverFactory.createInstance(browserName);
+        System.out.println("Test is started for following browser: " + browserName);
         driver = WebDriverFactory.getDriver();
         loginPage = new LoginPage(driver);
     }

@@ -25,9 +25,10 @@ public class TicketTest {
     //Test data for tests with comments
     String commentValue = "I am a test comment";
 
+    @Parameters({"browserName"})
     @BeforeTest
-    public void setUp() {
-        WebDriverFactory.createInstance("Chrome");
+    public void setUp(String browserName) {
+        WebDriverFactory.createInstance(browserName);
         driver = WebDriverFactory.getDriver();
         loginPage = new LoginPage(driver);
         homePage = new HomePage(driver);

@@ -45,34 +45,16 @@ public class WebDriverFactory {
             WebDriverManager.edgedriver().setup();
             driver = new EdgeDriver();
         } else {
-            driver = new ChromeDriver();
+            System.out.println("chrome");
+//            driver = new ChromeDriver();
         }
 
         driver.manage().window().maximize();
         // Implicit Wait. Will wait constant amount of time for every element.
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS) ;
 
-         //Simulate slow network speed - network throttle
-
-//        Map<String, String> map = new HashMap<>();
-//        map.put("offline", "false");
-//        map.put("latency", "10");
-//        map.put("download_throughput", "1024");
-//        map.put("upload_throughput", "1024");
-
-//        CommandExecutor executor = (() driver).getCommandExecutor();
-//        try {
-//            Response response = executor.execute(
-//                    new Command(((ChromeDriver) driver).getSessionId(), "setNetworkConditions", ImmutableMap.of("network_conditions", ImmutableMap.copyOf(map)))
-//            );
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
 
         webDriver = driver;
 
-    }
-
-    public static class ScreenShotListeners {
     }
 }

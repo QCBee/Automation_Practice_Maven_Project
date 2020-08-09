@@ -15,7 +15,7 @@ public class HomePage {
     }
 
     //List of used locators
-    private By userProfileIcon = By.cssSelector("[alt = 'User profile for webinar5']");
+    private By userProfileIcon = By.cssSelector(".aui-avatar-inner");
     private By createIssueButton = By.id("create_link");
     private By issueCreatedNotification = By.id("aui-flag-container");
     private By linkToCreatedIssue = By.xpath("//*[contains(text(),' - Test Summary')]");

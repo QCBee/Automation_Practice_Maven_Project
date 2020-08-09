@@ -17,25 +17,25 @@ public class TestNJListeners implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult result) {
-        System.out.print("Following test case was started: " + result.getName());
+        System.out.println("Following test case was started: " + result.getName());
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        System.out.print("Following test case was passed: " + result.getName());
+        System.out.println("Following test case was passed: " + result.getName());
 
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
-        System.out.print("Following test case was failed: " + result.getName());
+        System.out.println("Following test case was failed: " + result.getName());
         createScreenshot();
         WebDriverFactory.getDriver().quit();
     }
 
     @Override
     public void onTestSkipped(ITestResult result) {
-        System.out.print("Following test case was skipped: " + result.getName());
+        System.out.println("Following test case was skipped: " + result.getName());
     }
 
     @Override
@@ -81,7 +81,6 @@ public class TestNJListeners implements ITestListener {
             System.out.println("Screenshot was NOT added to folder");
             e.printStackTrace();
         }
-
     }
 }
 
