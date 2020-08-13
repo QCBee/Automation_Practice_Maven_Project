@@ -6,29 +6,23 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
-
 import java.util.concurrent.TimeUnit;
 
 public class WebDriverFactory {
-
-    private static WebDriver webDriver;
+    private static final ThreadLocal <WebDriver> webDriver = new ThreadLocal<>();
 
     public static WebDriver getDriver() {
+        return webDriver.get();
+    }
+
+    public ThreadLocal<WebDriver> getWebDriver() {
         return webDriver;
     }
 
-    public static void setWebDriver(WebDriver driver) {
-        webDriver = driver;
-    }
-
-    public static void closeDriver() {
-        webDriver.quit();
+    public WebDriverFactory() {
     }
 
     public static void createInstance(String browserName) {
-
-        DesiredCapabilities capability = null;
         WebDriver driver = null;
 
         if (browserName.toLowerCase().contains("firefox")) {
@@ -54,7 +48,7 @@ public class WebDriverFactory {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS) ;
 
 
-        webDriver = driver;
+        webDriver.set(driver);
 
     }
 }

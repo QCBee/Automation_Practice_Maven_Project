@@ -2,10 +2,11 @@ package utils;
 
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-
+import pages.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -14,6 +15,13 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
 public class TestNJListeners implements ITestListener {
+    WebDriver driver = null;
+    LoginPage loginPage = null;
+    CreateIssuePage createIssuePage = null;
+    DeleteCommentPage deleteCommentPage = null;
+    ForgotLoginPage forgotLoginPage = null;
+    HomePage homePage = null;
+    TicketPage ticketPage = null;
 
     @Override
     public void onTestStart(ITestResult result) {
@@ -23,14 +31,12 @@ public class TestNJListeners implements ITestListener {
     @Override
     public void onTestSuccess(ITestResult result) {
         System.out.println("Following test case was passed: " + result.getName());
-
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
         System.out.println("Following test case was failed: " + result.getName());
         createScreenshot();
-        WebDriverFactory.getDriver().quit();
     }
 
     @Override
@@ -40,22 +46,19 @@ public class TestNJListeners implements ITestListener {
 
     @Override
     public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
-
     }
 
     @Override
     public void onStart(ITestContext context) {
-
     }
 
     @Override
     public void onFinish(ITestContext context) {
-
+        WebDriverFactory.getDriver().quit();
     }
 
     private File captureScreenshot() {
         return ((TakesScreenshot) WebDriverFactory.getDriver()).getScreenshotAs(OutputType.FILE);
-
     }
 
     private void createScreenshot() {
