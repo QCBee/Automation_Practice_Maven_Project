@@ -25,16 +25,19 @@ public class TestNJListeners implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult result) {
+        System.out.println("Executing Listener - onTestStart");
         System.out.println("Following test case was started: " + result.getName());
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
+        System.out.println("Executing Listener - onTestSuccess");
         System.out.println("Following test case was passed: " + result.getName());
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
+        System.out.println("Execution Listener - onTestFailure");
         System.out.println("Following test case was failed: " + result.getName());
         createScreenshot();
     }
@@ -50,10 +53,12 @@ public class TestNJListeners implements ITestListener {
 
     @Override
     public void onStart(ITestContext context) {
+        System.out.println("Executing Listener - onStart");
     }
 
     @Override
     public void onFinish(ITestContext context) {
+        System.out.println("Executing Listener - onFinish");
         WebDriverFactory.getDriver().quit();
     }
 
