@@ -3,16 +3,18 @@ package pages;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.WebDriverFactory;
+
 import java.time.Duration;
 
 public class CreateIssuePage {
-    private WebDriver driver = null;
+    private final WebDriver driver;
 
     public CreateIssuePage(WebDriver driver) {
         this.driver = driver;
     }
 
-    //List of used locators
+    //List of used locators - locators for actions
     private By createIssuePopPup = By.id("create-issue-dialog");
     private By projectInput = By.id("project-field");
     private By issueTypeInputEnabled = By.xpath("//*[@id='issuetype-field'][not(@disabled)]");
@@ -27,118 +29,117 @@ public class CreateIssuePage {
     private By textModeForDescription = By.xpath("//*[@data-mode='source']//child::a");
 
     public boolean isCreateIssuePopUpShown() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(60).getSeconds());
         return wait.until(ExpectedConditions.presenceOfElementLocated(createIssuePopPup)).isDisplayed();
     }
 
     public boolean isCreateIssuePopUpNotShown() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(60).getSeconds());
         return wait.until(ExpectedConditions.invisibilityOfElementLocated(createIssuePopPup));
     }
 
     public boolean isProjectInputEnabled() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(60).getSeconds());
         return wait.until(ExpectedConditions.presenceOfElementLocated(createIssuePopPup)).isDisplayed();
     }
 
     public void enterProject(String projectValue) {
-        driver.findElement(projectInput).clear();
-        driver.findElement(projectInput).sendKeys(projectValue);
-        driver.findElement(projectInput).sendKeys(Keys.ENTER);
+        WebDriverFactory.getDriver().findElement(projectInput).clear();
+        WebDriverFactory.getDriver().findElement(projectInput).sendKeys(projectValue);
+        WebDriverFactory.getDriver().findElement(projectInput).sendKeys(Keys.ENTER);
     }
 
     public boolean isTypeIssueInputEnabled() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(10).getSeconds());
         return wait.until(ExpectedConditions.presenceOfElementLocated(issueTypeInputEnabled)).isEnabled();
     }
 
     public void enterTypeIssue(String typeValue) {
         clickOnElementWithRetry(issueTypeInput, issueTypeInputEnabled, 4, 60);
-        driver.findElement(issueTypeInputEnabled).clear();
-        driver.findElement(issueTypeInputEnabled).sendKeys(typeValue);
-        driver.findElement(issueTypeInputEnabled).sendKeys(Keys.ENTER);
+        WebDriverFactory.getDriver().findElement(issueTypeInputEnabled).clear();
+        WebDriverFactory.getDriver().findElement(issueTypeInputEnabled).sendKeys(typeValue);
+        WebDriverFactory.getDriver().findElement(issueTypeInputEnabled).sendKeys(Keys.ENTER);
     }
 
     public boolean isSummaryInputEnabled() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(60).getSeconds());
         return wait.until(ExpectedConditions.presenceOfElementLocated(summaryInput)).isEnabled();
     }
 
     public void enterSummary(String summaryValue) {
         clickOnElementWithRetry(summaryInput, summaryInputEnabled, 4, 30);
-        driver.findElement(summaryInput).sendKeys(summaryValue);
+        WebDriverFactory.getDriver().findElement(summaryInput).sendKeys(summaryValue);
     }
 
     public void enterReporter(String reporterValue) {
-        driver.findElement(reporterInput).clear();
-        driver.findElement(reporterInput).sendKeys(reporterValue);
-        driver.findElement(reporterInput).sendKeys(Keys.ENTER);
+        WebDriverFactory.getDriver().findElement(reporterInput).clear();
+        WebDriverFactory.getDriver().findElement(reporterInput).sendKeys(reporterValue);
+        WebDriverFactory.getDriver().findElement(reporterInput).sendKeys(Keys.ENTER);
     }
 
     public void clickCreateButton() {
-        driver.findElement(createButton).click();
+        WebDriverFactory.getDriver().findElement(createButton).click();
     }
 
     public void clickCancelButton() {
-        driver.findElement(cancelButton).click();
+        WebDriverFactory.getDriver().findElement(cancelButton).click();
     }
 
     public void acceptAlert() {
-        driver.switchTo().alert().accept();
+        WebDriverFactory.getDriver().switchTo().alert().accept();
     }
 
     public void dismissAlert() {
-        driver.switchTo().alert().dismiss();
+        WebDriverFactory.getDriver().switchTo().alert().dismiss();
     }
 
     public boolean doProjectNameValueMatch(String projectNameValue) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(60).getSeconds());
         return wait.until(ExpectedConditions.textToBePresentInElementLocated(projectInput, projectNameValue));
     }
 
     public boolean doTypeIssueValueMatch(String typeIssueValue) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(60).getSeconds());
         return wait.until(ExpectedConditions.textToBePresentInElementLocated(issueTypeInputEnabled, typeIssueValue));
     }
 
     public boolean doSummaryValueMatch(String summaryValue) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(60).getSeconds());
         return wait.until(ExpectedConditions.textToBePresentInElementLocated(summaryInput, summaryValue));
     }
 
     public boolean doReporterValueMatch(String reporterValue) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(60).getSeconds());
         return wait.until(ExpectedConditions.textToBePresentInElementLocated(reporterInput, reporterValue));
     }
 
 
     public void selectTextModeForDescriptionInput() {
-        driver.findElement(textModeForDescription).click();
+        WebDriverFactory.getDriver().findElement(textModeForDescription).click();
     }
 
     public void enterDescription(String descriptionValue) {
-        driver.findElement(descriptionInput).sendKeys(descriptionValue);
+        WebDriverFactory.getDriver().findElement(descriptionInput).sendKeys(descriptionValue);
     }
 
     public void enterPriorityInput(String priorityValue) {
-        driver.findElement(priorityInput).clear();
-        driver.findElement(priorityInput).sendKeys(priorityValue);
+        WebDriverFactory.getDriver().findElement(priorityInput).clear();
+        WebDriverFactory.getDriver().findElement(priorityInput).sendKeys(priorityValue);
     }
 
     private void clickOnElementWithRetry(By elementToBeClicked, By successCriteria, int attempts, int timeOutInSec) {
-        WebDriverWait wait = new WebDriverWait(driver, timeOutInSec);
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), timeOutInSec);
         for (int i = 0; i < attempts; i++) {
-            driver.findElement(elementToBeClicked).click();
+            WebDriverFactory.getDriver().findElement(elementToBeClicked).click();
             try {
                 wait.until(ExpectedConditions.visibilityOfElementLocated(successCriteria)).isDisplayed();
                 break;
             } catch (TimeoutException e) {
                 wait.until(ExpectedConditions.elementToBeClickable(elementToBeClicked));
-                driver.findElement(elementToBeClicked).click();
+                WebDriverFactory.getDriver().findElement(elementToBeClicked).click();
             }
         }
     }
-    //удалить из всех тестов driver, заменить его на WebDriver.getDriver()
 }
 
 

@@ -1,18 +1,18 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="RegressionSuite" parallel="classes" thread-count="2">
     <parameter name="browserName" value="Chrome"/>
-    <test name="LoginTests">
-        <classes>
-            <class name="login_tests.ResetLoginTest"/>
-            <class name="login_tests.UnsuccessfulLoginTest"/>
-            <class name="login_tests.SuccessfulLoginTest"/>
-        </classes>
-    </test>
-<!--    <test name="CreateTicketTest">-->
+<!--    <test name="LoginTests">-->
 <!--        <classes>-->
-<!--            <class name="CreateIssueTest"/>-->
+<!--            <class name="login_tests.ResetLoginTest"/>-->
+<!--            <class name="login_tests.UnsuccessfulLoginTest"/>-->
+<!--            <class name="login_tests.SuccessfulLoginTest"/>-->
 <!--        </classes>-->
 <!--    </test>-->
+    <test name="CreateTicketTest">
+        <classes>
+            <class name="create_issue_tests.CancelCreateIssueTest"/>
+        </classes>
+    </test>
 <!--    <test name="TicketTest">-->
 <!--        <classes>-->
 <!--            <class name="TicketTest"/>-->
