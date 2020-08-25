@@ -90,9 +90,11 @@ public class CreateIssueTest {
         createIssuePage.clickCancelButton();
 
         createIssuePage.acceptAlert();
+//        createIssuePage.isCreateIssuePopUpNotShown();
+        Assert.assertTrue(createIssuePage.isCreateIssuePopUpNotShown());
 
-        //TODO Add asserts for showing alert window
-        //TODO Add asserts for NOT showinf create issue pop-up
+
+        //TODO Add asserts for NOT showinf create issue pop-up - wait with for+time
 
     }
 

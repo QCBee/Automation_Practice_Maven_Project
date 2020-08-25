@@ -7,7 +7,6 @@ import pages.LoginPage;
 import utils.WebDriverFactory;
 
 public class UnsuccessfulLoginTest {
-    WebDriver driver = null;
     LoginPage loginPage = null;
 
     //Test data locators
@@ -24,8 +23,7 @@ public class UnsuccessfulLoginTest {
     public void setUp(String browserName) {
         WebDriverFactory.createInstance(browserName);
         System.out.println("Test is started for following browser: " + browserName);
-        driver = WebDriverFactory.getDriver();
-        loginPage = new LoginPage(driver);
+        loginPage = new LoginPage(WebDriverFactory.getDriver());
     }
 
     @DataProvider(name = "UnsuccessfullLoginsTestDataList")
@@ -51,6 +49,6 @@ public class UnsuccessfulLoginTest {
 
     @AfterMethod
     public void tearDown(){
-        driver.quit();
+        WebDriverFactory.closeBrowser();
     }
 }

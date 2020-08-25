@@ -3,7 +3,7 @@
     <parameter name="browserName" value="Chrome"/>
     <test name="LoginTests">
         <classes>
-<!--            <class name="login_tests.ResetLoginTest"/>-->
+            <class name="login_tests.ResetLoginTest"/>
             <class name="login_tests.UnsuccessfulLoginTest"/>
             <class name="login_tests.SuccessfulLoginTest"/>
         </classes>
@@ -18,7 +18,6 @@
 <!--            <class name="TicketTest"/>-->
 <!--        </classes>-->
 <!--    </test>-->
-
     <listeners>
         <listener class-name="utils.TestNJListeners"/>
     </listeners>

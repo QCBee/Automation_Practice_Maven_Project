@@ -23,7 +23,8 @@ public class WebDriverFactory {
     }
 
     public static void createInstance(String browserName) {
-        WebDriver driver = null;
+        WebDriver driver;
+        driver = null;
 
         if (browserName.toLowerCase().contains("firefox")) {
             WebDriverManager.firefoxdriver().setup();
@@ -32,7 +33,6 @@ public class WebDriverFactory {
             WebDriverManager.iedriver().setup();
             driver = new InternetExplorerDriver();
         } else if (browserName.toLowerCase().contains("chrome")) {
-//      WebDriverManager.chromedriver().version("78.0.3904.70").setup();
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
         } else if (browserName.toLowerCase().contains("edge")) {
@@ -40,15 +40,15 @@ public class WebDriverFactory {
             driver = new EdgeDriver();
         } else {
             System.out.println("chrome");
-//            driver = new ChromeDriver();
         }
 
         driver.manage().window().maximize();
-        // Implicit Wait. Will wait constant amount of time for every element.
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS) ;
-
-
         webDriver.set(driver);
 
+    }
+
+    public static void closeBrowser(){
+        getDriver().quit();
     }
 }
