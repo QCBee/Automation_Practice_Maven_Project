@@ -15,13 +15,6 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
 public class TestNJListeners implements ITestListener {
-    WebDriver driver = null;
-    LoginPage loginPage = null;
-    CreateIssuePage createIssuePage = null;
-    DeleteCommentPage deleteCommentPage = null;
-    ForgotLoginPage forgotLoginPage = null;
-    HomePage homePage = null;
-    TicketPage ticketPage = null;
 
     @Override
     public void onTestStart(ITestResult result) {

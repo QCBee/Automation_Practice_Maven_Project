@@ -89,7 +89,7 @@ public class CreateIssueTest {
 
         createIssuePage.clickCancelButton();
 
-        createIssuePage.acceptAlert();
+        createIssuePage.acceptAlertWithRetry(4,10);
 //        createIssuePage.isCreateIssuePopUpNotShown();
         Assert.assertTrue(createIssuePage.isCreateIssuePopUpNotShown());
 
@@ -113,7 +113,7 @@ public class CreateIssueTest {
 
         createIssuePage.enterReporter(reporterValue);
 
-        createIssuePage.dismissAlert();
+        createIssuePage.dismissAlertWithRetry(4,10);
         Assert.assertTrue(createIssuePage.isCreateIssuePopUpShown());
         Assert.assertTrue(createIssuePage.doProjectNameValueMatch(projectNameValue));
         Assert.assertTrue(createIssuePage.doTypeIssueValueMatch(issueTypeValue));

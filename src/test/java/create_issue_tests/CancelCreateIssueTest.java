@@ -61,12 +61,8 @@ public class CancelCreateIssueTest {
 
         createIssuePage.clickCancelButton();
 
-        createIssuePage.acceptAlert();
+        createIssuePage.acceptAlertWithRetry(4,10);
         Assert.assertTrue(createIssuePage.isCreateIssuePopUpNotShown());
-
-
-        //TODO Add asserts for NOT showinf create issue pop-up - wait with for+time
-
     }
 
     @Test
@@ -84,7 +80,9 @@ public class CancelCreateIssueTest {
 
         createIssuePage.enterReporter(reporterValue);
 
-        createIssuePage.dismissAlert();
+        createIssuePage.clickCancelButton();
+
+        createIssuePage.dismissAlertWithRetry(4,10);
         Assert.assertTrue(createIssuePage.isCreateIssuePopUpShown());
         Assert.assertTrue(createIssuePage.doProjectNameValueMatch(projectNameValue));
         Assert.assertTrue(createIssuePage.doTypeIssueValueMatch(issueTypeValue));

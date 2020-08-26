@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import utils.WebDriverFactory;
 
 import java.time.Duration;
@@ -67,7 +68,7 @@ public class CreateIssuePage {
     }
 
     public void enterSummary(String summaryValue) {
-        clickOnElementWithRetry(summaryInput, summaryInputEnabled, 4, 30);
+        clickOnElementWithRetry(summaryInput, summaryInputEnabled, 4, 60);
         WebDriverFactory.getDriver().findElement(summaryInput).sendKeys(summaryValue);
     }
 
@@ -85,12 +86,31 @@ public class CreateIssuePage {
         WebDriverFactory.getDriver().findElement(cancelButton).click();
     }
 
-    public void acceptAlert() {
-        WebDriverFactory.getDriver().switchTo().alert().accept();
+    public void acceptAlertWithRetry(int attempts, int timeOutInSec) throws NoAlertPresentException {
+        for (int i = 1; i < attempts; i++) {
+            try {
+                WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), timeOutInSec);
+                wait.until(ExpectedConditions.alertIsPresent());
+                WebDriverFactory.getDriver().switchTo().alert().accept();
+                break;
+            } catch (Exception e) {
+                System.out.println("Something with alert");
+            }
+        }
     }
 
-    public void dismissAlert() {
-        WebDriverFactory.getDriver().switchTo().alert().dismiss();
+    public void dismissAlertWithRetry(int attempts, int timeOutInSec) throws NoAlertPresentException {
+        for (int i = 1; i < attempts; i++) {
+            try {
+                WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(),timeOutInSec);
+                wait.until(ExpectedConditions.alertIsPresent());
+                WebDriverFactory.getDriver().switchTo().alert().dismiss();
+                break;
+            }
+            catch (Exception e){
+                System.out.println("Something with alert");
+            }
+        }
     }
 
     public boolean doProjectNameValueMatch(String projectNameValue) {
@@ -112,7 +132,6 @@ public class CreateIssuePage {
         WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(60).getSeconds());
         return wait.until(ExpectedConditions.textToBePresentInElementLocated(reporterInput, reporterValue));
     }
-
 
     public void selectTextModeForDescriptionInput() {
         WebDriverFactory.getDriver().findElement(textModeForDescription).click();

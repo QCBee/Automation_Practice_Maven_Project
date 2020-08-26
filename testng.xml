@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="RegressionSuite" parallel="classes" thread-count="2">
+<suite name="RegressionSuite" parallel="classes" thread-count="1">
     <parameter name="browserName" value="Chrome"/>
 <!--    <test name="LoginTests">-->
 <!--        <classes>-->
