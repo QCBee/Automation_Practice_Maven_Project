@@ -53,12 +53,12 @@ public class LoginPage {
     }
 
     public boolean isErrorNotificationShown(){
-        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(10).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(presenceOfElementLocated(errorLoginNotification)).isDisplayed();
     }
 
     public boolean isLoginIconShown(){
-        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(10).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(presenceOfElementLocated(loginIcon)).isDisplayed();
     }
 }

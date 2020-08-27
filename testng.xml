@@ -1,23 +1,24 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="RegressionSuite" parallel="classes" thread-count="1">
     <parameter name="browserName" value="Chrome"/>
-<!--    <test name="LoginTests">-->
-<!--        <classes>-->
+    <test name="LoginTests">
+        <classes>
 <!--            <class name="login_tests.ResetLoginTest"/>-->
 <!--            <class name="login_tests.UnsuccessfulLoginTest"/>-->
-<!--            <class name="login_tests.SuccessfulLoginTest"/>-->
-<!--        </classes>-->
-<!--    </test>-->
-    <test name="CreateTicketTest">
-        <classes>
-            <class name="create_issue_tests.CancelCreateIssueTest"/>
+            <class name="login_tests.SuccessfulLoginTest"/>
         </classes>
     </test>
-<!--    <test name="TicketTest">-->
+<!--    <test name="CreateTicketTest">-->
 <!--        <classes>-->
-<!--            <class name="TicketTest"/>-->
+<!--            <class name="create_issue_tests.CancelCreateIssueTest"/>-->
+<!--&lt;!&ndash;            <class name="create_issue_tests.SuccessfulCreateIssueTest"/>&ndash;&gt;-->
 <!--        </classes>-->
 <!--    </test>-->
+<!--&lt;!&ndash;    <test name="TicketTest">&ndash;&gt;-->
+<!--&lt;!&ndash;        <classes>&ndash;&gt;-->
+<!--&lt;!&ndash;            <class name="TicketTest"/>&ndash;&gt;-->
+<!--&lt;!&ndash;        </classes>&ndash;&gt;-->
+<!--&lt;!&ndash;    </test>&ndash;&gt;-->
     <listeners>
         <listener class-name="utils.TestNJListeners"/>
     </listeners>

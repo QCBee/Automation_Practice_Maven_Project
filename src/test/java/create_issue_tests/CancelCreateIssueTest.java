@@ -5,9 +5,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pages.CreateIssuePage;
-import pages.HomePage;
-import pages.LoginPage;
+import pages.*;
 import utils.WebDriverFactory;
 
 public class CancelCreateIssueTest {
@@ -61,7 +59,7 @@ public class CancelCreateIssueTest {
 
         createIssuePage.clickCancelButton();
 
-        createIssuePage.acceptAlertWithRetry(4,10);
+        createIssuePage.acceptAlertWithRetry(AttempsType.SHORT_ATTEMPT.getAttemptAmount(), TimeOutTypes.LOW.getTimeOutInSec());
         Assert.assertTrue(createIssuePage.isCreateIssuePopUpNotShown());
     }
 
@@ -82,7 +80,7 @@ public class CancelCreateIssueTest {
 
         createIssuePage.clickCancelButton();
 
-        createIssuePage.dismissAlertWithRetry(4,10);
+        createIssuePage.dismissAlertWithRetry(AttempsType.SHORT_ATTEMPT.getAttemptAmount(), TimeOutTypes.LOW.getTimeOutInSec());
         Assert.assertTrue(createIssuePage.isCreateIssuePopUpShown());
         Assert.assertTrue(createIssuePage.doProjectNameValueMatch(projectNameValue));
         Assert.assertTrue(createIssuePage.doTypeIssueValueMatch(issueTypeValue));

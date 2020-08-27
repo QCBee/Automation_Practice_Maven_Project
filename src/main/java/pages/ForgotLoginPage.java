@@ -19,7 +19,7 @@ public class ForgotLoginPage {
     private By forgotLoginForm = By.id("forgot-login");
 
     public boolean isForgotLoginFormShown(){
-        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(10).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(presenceOfElementLocated(forgotLoginForm)).isDisplayed();
     }
 }

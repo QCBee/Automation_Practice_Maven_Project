@@ -4,11 +4,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.WebDriverFactory;
+
 import java.time.Duration;
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
 
 public class TicketPage {
-    private WebDriver driver= null;
+    private final WebDriver driver;
 
     public TicketPage(WebDriver driver) {
         this.driver = driver;
@@ -80,289 +82,289 @@ public class TicketPage {
 
 
     public void navigateToTicketPage(String ticketUrl){
-        driver.get(ticketUrl);
+        WebDriverFactory.getDriver().get(ticketUrl);
     }
 
     public boolean isProjectAvatarIconShown(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(presenceOfElementLocated(projectAvatar)).isDisplayed();
     }
 
     public boolean isIssueLinkShown(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(presenceOfElementLocated(linkIssue)).isDisplayed();
     }
 
     public boolean isEditButtonOnCommandBarShown(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(presenceOfElementLocated(editButtonOnCommandBar)).isDisplayed();
     }
 
     public boolean isCommentButtonOnCommandBarShown(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(presenceOfElementLocated(commentButtonOnCommandBar)).isDisplayed();
     }
 
     public boolean isAssignButtonOnCommandBarShown(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(presenceOfElementLocated(assignButtonOnCommandBar)).isDisplayed();
     }
 
     public boolean isMoreDropDownButtonOnCommandBarShown(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(presenceOfElementLocated(moreDropDownButtonOnCommandBar)).isDisplayed();
     }
 
     public boolean isBacklogButtonOnCommandBarShown(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(presenceOfElementLocated(backlogButtonOnCommandBar)).isDisplayed();
     }
 
     public boolean isSelectedForDevelopmentButtonShown(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(presenceOfElementLocated(selectedForDevelopmentButtonOnCommandBar)).isDisplayed();
     }
 
     public boolean isWorkflowButtonOnCommandBarShown(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(presenceOfElementLocated(workflowButtonOnCommandBar)).isDisplayed();
     }
 
     public boolean isShareButtonOncommandBarShown(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(presenceOfElementLocated(shareButtonOnCommandBar)).isDisplayed();
     }
 
     public boolean isExportButtonOnCommandBarShown(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(presenceOfElementLocated(exportButtonOnCommandBar)).isDisplayed();
     }
 
     public boolean isDetailsLabelShown(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(presenceOfElementLocated(detailsLabel)).isDisplayed();
     }
 
     public boolean isTypeIssueFieldShown(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(presenceOfElementLocated(typeIssueField)).isDisplayed();
     }
 
     public boolean isPriorityIssueFieldShown(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(presenceOfElementLocated(priorityIssueField)).isDisplayed();
     }
 
     public boolean isLabelsIssueFieldShown(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(presenceOfElementLocated(labelsIssueField)).isDisplayed();
     }
 
     public boolean isStatusIssueFieldShown(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(presenceOfElementLocated(statusIssueField)).isDisplayed();
     }
 
     public boolean isResolutionIssueFieldShown(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(presenceOfElementLocated(resolutionIssueField)).isDisplayed();
     }
 
     public boolean isDescriptionAreaShown(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(presenceOfElementLocated(descriptionArea)).isDisplayed();
     }
 
     public boolean isDescriptionLabelShown(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(presenceOfElementLocated(descriptionLabel)).isDisplayed();
     }
 
     public boolean isAttachmentLabelShown(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(presenceOfElementLocated(attachmentLabel)).isDisplayed();
     }
 
     public boolean isMoreButtonForAttachmentSectionShown(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(presenceOfElementLocated(moreButtonAttachmentSection)).isDisplayed();
     }
 
     public boolean isAttachmentAreaShown(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(presenceOfElementLocated(attachmentArea)).isDisplayed();
     }
 
     public boolean isBrowseButtonShownOnAttachmentArea(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(presenceOfElementLocated(browseLinkOnAttachmentArea)).isDisplayed();
     }
 
     public boolean isActivitySectionShown(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(presenceOfElementLocated(activityLabel)).isDisplayed();
     }
 
     public boolean isAllTabNotSelectedShown(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(presenceOfElementLocated(allTabNotSelected)).isDisplayed();
     }
 
     public boolean isWorkLogTabNotSelectedShown(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(presenceOfElementLocated(workLogTabNotSelected)).isDisplayed();
     }
 
     public boolean isHistoryTabNotSelectedShown(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(presenceOfElementLocated(historyTabNotSelected)).isDisplayed();
     }
 
     public boolean isActivityTabNotSelectedShown(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(presenceOfElementLocated(activityTabNotSelected)).isDisplayed();
     }
 
     public boolean isJigitTabNotSelectedShown(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(presenceOfElementLocated(jigitTabNotSelected)).isDisplayed();
     }
 
     public boolean isViewIssuePageShown(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(ExpectedConditions.presenceOfElementLocated(viewIssuePage)).isDisplayed();
     }
 
     public boolean doProjectValueMatch(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(ExpectedConditions.presenceOfElementLocated(projectValue)).isDisplayed();
     }
 
     public boolean doSummaryValueMatch(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(ExpectedConditions.presenceOfElementLocated(summaryValue)).isDisplayed();
     }
 
     public boolean doTypeIssueValueMatch(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(ExpectedConditions.presenceOfElementLocated(typeIssueValue)).isDisplayed();
     }
 
     public boolean doReporterValueMatch(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(ExpectedConditions.presenceOfElementLocated(reporterValue)).isDisplayed();
     }
 
     public boolean doPriorityValueMatch(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(ExpectedConditions.presenceOfElementLocated(priorityValue)).isDisplayed();
     }
 
     public boolean doDescriptionValueMatch(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(ExpectedConditions.presenceOfElementLocated(descriptionValue)).isDisplayed();
     }
 
     public boolean isCommentTabSelected(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(ExpectedConditions.presenceOfElementLocated(commentTab)).isDisplayed();
     }
 
     public boolean isAddCommentFooterButtonEnabled(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(ExpectedConditions.presenceOfElementLocated(addCommentFooterButton)).isEnabled();
     }
 
     public boolean isAnyCommentNotAdded(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(ExpectedConditions.presenceOfElementLocated(anyNotAddedCommentsArea)).isDisplayed();
     }
 
     public void clickAddCommentFooterButton(){
-        driver.findElement(addCommentFooterButton).click();
+        WebDriverFactory.getDriver().findElement(addCommentFooterButton).click();
     }
 
     public boolean isAddCommentAreaShown(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(ExpectedConditions.presenceOfElementLocated(commentInput)).isEnabled();
     }
 
     public boolean isAddCommentFooterButtonDisabled(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(ExpectedConditions.invisibilityOfElementLocated(addCommentFooterButton));
     }
 
     public boolean isAddCommentButtonDisabled(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(ExpectedConditions.presenceOfElementLocated(addCommentButtonDisabled)).isDisplayed();
     }
 
     public boolean isCancelButtonEnabled(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(ExpectedConditions.presenceOfElementLocated(cancelAddCommentButton)).isDisplayed();
     }
 
     public void selectTextModeForComment(){
-        driver.findElement(textMode).click();
+        WebDriverFactory.getDriver().findElement(textMode).click();
     }
 
     public boolean isTextModeForCommentSelected(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(ExpectedConditions.presenceOfElementLocated(textMode)).isEnabled();
     }
 
     public void enterComment(String commentValue){
-        driver.findElement(commentInput).sendKeys(commentValue);
+        WebDriverFactory.getDriver().findElement(commentInput).sendKeys(commentValue);
     }
 
     public boolean isAddCommentButtonEnabled(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(ExpectedConditions.presenceOfElementLocated(addCommentButtonEnabled)).isEnabled();
     }
 
     public void clickAddCommentButton(){
-        driver.findElement(addCommentButtonEnabled).click();
+        WebDriverFactory.getDriver().findElement(addCommentButtonEnabled).click();
     }
 
     public boolean isLogIssueAreaShown(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(ExpectedConditions.presenceOfElementLocated(logsIssueArea)).isDisplayed();
     }
 
     public boolean isAddedCommentShown(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(ExpectedConditions.presenceOfElementLocated(addedCommentValue)).isDisplayed();
     }
 
     public void clickDeleteCommentIcon(){
-        driver.findElement(deleteIcon).click();
+        WebDriverFactory.getDriver().findElement(deleteIcon).click();
     }
 
     public boolean isUpdateIssueNotificationShown(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(ExpectedConditions.presenceOfElementLocated(updateIssueNotification)).isDisplayed();
     }
 
     public boolean isDeleteIconShown(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(ExpectedConditions.presenceOfElementLocated(deleteIcon)).isDisplayed();
     }
 
     public boolean isUpdateIssueNotificationNotShown(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(ExpectedConditions.invisibilityOfElementLocated(updateIssueNotification));
     }
 
     public void clickCancelButton(){
-        driver.findElement(cancelAddCommentButton).click();
+        WebDriverFactory.getDriver().findElement(cancelAddCommentButton).click();
     }
 
     public void acceptAlert(){
-        driver.switchTo().alert().accept();
+        WebDriverFactory.getDriver().switchTo().alert().accept();
     }
 
     public void dismissAlert(){
-        driver.switchTo().alert().dismiss();
+        WebDriverFactory.getDriver().switchTo().alert().dismiss();
     }
 
 
