@@ -1,6 +1,5 @@
 package create_issue_tests;
 
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import pages.CreateIssuePage;
@@ -45,30 +44,18 @@ public class SuccessfulCreateIssueTest {
         Assert.assertTrue(homePage.isUserProfileIconShown());
     }
 
-    @DataProvider(name = "IssueTypesTestData")
-    public Object[][] createData() {
-        return new Object[][]{
-                {projectNameValue, "Task", summaryValue, reporterValue, "Task"},
-                {projectNameValue, "Bug", summaryValue, reporterValue, "Bug"},
-                {projectNameValue, "Epic", summaryValue, reporterValue, "Epic"},
-                {projectNameValue, "User Story", summaryValue, reporterValue, "User Story"},
-                {reporterValue, "Test", summaryValue, reporterValue, "Test"},
-                {reporterValue, "Story", summaryValue, reporterValue, "Story"}
-        };
-    }
-
-    @Test(dataProvider = "IssueTypesTestData")
-    public void createTicketWithRequiredFieldsTest(String projectName, String issueType, String summary, String reporter, String createdType) {
+    @Test()
+    public void createTicketWithRequiredFieldsTest() {
         homePage.clickCreateIssueButton();
         Assert.assertTrue(createIssuePage.isCreateIssuePopUpShown());
         Assert.assertTrue(createIssuePage.isProjectInputEnabled());
         Assert.assertTrue(createIssuePage.isTypeIssueInputEnabled());
         Assert.assertTrue(createIssuePage.isSummaryInputEnabled());
 
-        createIssuePage.enterProject(projectName);
-        createIssuePage.enterTypeIssue(issueType);
-        createIssuePage.enterSummary(summary);
-        createIssuePage.enterReporter(reporter);
+        createIssuePage.enterProject(projectNameValue);
+        createIssuePage.enterTypeIssue(issueTypeValue);
+        createIssuePage.enterSummary(summaryValue);
+        createIssuePage.enterReporter(reporterValue);
         createIssuePage.clickCreateButton();
         Assert.assertTrue(homePage.isIssueCreateNotificationShown());
 
@@ -80,10 +67,6 @@ public class SuccessfulCreateIssueTest {
         Assert.assertTrue(ticketPage.doTypeIssueValueMatch());
         Assert.assertTrue(ticketPage.doReporterValueMatch());
     }
-
-    @DataProvider
-
-
 
     @Test
     public void createTicketWithAllFieldsTest(){
@@ -118,7 +101,6 @@ public class SuccessfulCreateIssueTest {
         Assert.assertTrue(ticketPage.doPriorityValueMatch());
         Assert.assertTrue(ticketPage.doDescriptionValueMatch());
     }
-
 
     @AfterMethod
     public void tearDown() {

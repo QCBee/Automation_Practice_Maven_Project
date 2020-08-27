@@ -3,7 +3,6 @@ package pages;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import utils.WebDriverFactory;
 
 import java.time.Duration;
@@ -30,17 +29,25 @@ public class CreateIssuePage {
     private By textModeForDescription = By.xpath("//*[@data-mode='source']//child::a");
 
     public boolean isCreateIssuePopUpShown() {
-        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(60).getSeconds());
-        return wait.until(ExpectedConditions.presenceOfElementLocated(createIssuePopPup)).isDisplayed();
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
+//        for (int i = 0; i <attempts ; i++) {
+//            try {
+                return wait.until(ExpectedConditions.presenceOfElementLocated(createIssuePopPup)).isDisplayed();
+//                break;
+//            }
+//            catch (Exception e){
+//                e.printStackTrace();
+//            }
+//        }
     }
 
     public boolean isCreateIssuePopUpNotShown() {
-        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(60).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(ExpectedConditions.invisibilityOfElementLocated(createIssuePopPup));
     }
 
     public boolean isProjectInputEnabled() {
-        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(60).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(ExpectedConditions.presenceOfElementLocated(createIssuePopPup)).isDisplayed();
     }
 
@@ -51,24 +58,24 @@ public class CreateIssuePage {
     }
 
     public boolean isTypeIssueInputEnabled() {
-        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(10).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(ExpectedConditions.presenceOfElementLocated(issueTypeInputEnabled)).isEnabled();
     }
 
     public void enterTypeIssue(String typeValue) {
-        clickOnElementWithRetry(issueTypeInput, issueTypeInputEnabled, 4, 60);
+        clickOnElementWithRetry(issueTypeInput, issueTypeInputEnabled, 4, TimeOutTypes.LOW.getTimeOutInSec());
         WebDriverFactory.getDriver().findElement(issueTypeInputEnabled).clear();
         WebDriverFactory.getDriver().findElement(issueTypeInputEnabled).sendKeys(typeValue);
         WebDriverFactory.getDriver().findElement(issueTypeInputEnabled).sendKeys(Keys.ENTER);
     }
 
     public boolean isSummaryInputEnabled() {
-        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(60).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(ExpectedConditions.presenceOfElementLocated(summaryInput)).isEnabled();
     }
 
     public void enterSummary(String summaryValue) {
-        clickOnElementWithRetry(summaryInput, summaryInputEnabled, 4, 60);
+        clickOnElementWithRetry(summaryInput, summaryInputEnabled, 4, TimeOutTypes.LOW.getTimeOutInSec());
         WebDriverFactory.getDriver().findElement(summaryInput).sendKeys(summaryValue);
     }
 
@@ -94,7 +101,7 @@ public class CreateIssuePage {
                 WebDriverFactory.getDriver().switchTo().alert().accept();
                 break;
             } catch (Exception e) {
-                System.out.println("Something with alert");
+                e.printStackTrace();
             }
         }
     }
@@ -108,28 +115,28 @@ public class CreateIssuePage {
                 break;
             }
             catch (Exception e){
-                System.out.println("Something with alert");
+                e.printStackTrace();
             }
         }
     }
 
     public boolean doProjectNameValueMatch(String projectNameValue) {
-        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(60).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(ExpectedConditions.textToBePresentInElementLocated(projectInput, projectNameValue));
     }
 
     public boolean doTypeIssueValueMatch(String typeIssueValue) {
-        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(60).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(ExpectedConditions.textToBePresentInElementLocated(issueTypeInputEnabled, typeIssueValue));
     }
 
     public boolean doSummaryValueMatch(String summaryValue) {
-        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(60).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(ExpectedConditions.textToBePresentInElementLocated(summaryInput, summaryValue));
     }
 
     public boolean doReporterValueMatch(String reporterValue) {
-        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(60).getSeconds());
+        WebDriverWait wait = new WebDriverWait(WebDriverFactory.getDriver(), Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(ExpectedConditions.textToBePresentInElementLocated(reporterInput, reporterValue));
     }
 
@@ -154,8 +161,9 @@ public class CreateIssuePage {
                 wait.until(ExpectedConditions.visibilityOfElementLocated(successCriteria)).isDisplayed();
                 break;
             } catch (TimeoutException e) {
-                wait.until(ExpectedConditions.elementToBeClickable(elementToBeClicked));
-                WebDriverFactory.getDriver().findElement(elementToBeClicked).click();
+                e.printStackTrace();
+//                wait.until(ExpectedConditions.elementToBeClickable(elementToBeClicked));
+//                WebDriverFactory.getDriver().findElement(elementToBeClicked).click();
             }
         }
     }

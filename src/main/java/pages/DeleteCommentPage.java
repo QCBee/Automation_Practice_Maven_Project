@@ -23,22 +23,22 @@ public class DeleteCommentPage {
     }
 
     public boolean isDeletePopUpShown(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40).getSeconds());
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(ExpectedConditions.presenceOfElementLocated(deletePopUp)).isEnabled();
     }
 
     public boolean isDeleteButtonShown(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40).getSeconds());
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(ExpectedConditions.presenceOfElementLocated(deleteButton)).isDisplayed();
     }
 
     public boolean isCancelButtonShown(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40).getSeconds());
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(ExpectedConditions.presenceOfElementLocated(cancelButton)).isDisplayed();
     }
 
     public boolean isDeletePopUpClosed(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40).getSeconds());
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TimeOutTypes.LOW.getTimeOutInSec()).getSeconds());
         return wait.until(ExpectedConditions.invisibilityOfElementLocated(deletePopUp));
     }
 
