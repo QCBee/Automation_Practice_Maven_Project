@@ -19,8 +19,8 @@
 <!--&lt;!&ndash;            <class name="TicketTest"/>&ndash;&gt;-->
 <!--&lt;!&ndash;        </classes>&ndash;&gt;-->
 <!--&lt;!&ndash;    </test>&ndash;&gt;-->
-    <listeners>
-        <listener class-name="utils.TestNJListeners"/>
-    </listeners>
+<!--    <listeners>-->
+<!--        <listener class-name="utils.TestNJListeners"/>-->
+<!--    </listeners>-->
 
 </suite>
