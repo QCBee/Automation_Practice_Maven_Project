@@ -13,4 +13,5 @@ jobs:
 
       - store_artifacts:
           path: ~/repo/screenshots
+          destination: Screenshot
           when: always
