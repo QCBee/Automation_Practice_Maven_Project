@@ -49,6 +49,6 @@ public class WebDriverFactory {
     }
 
     public static void closeBrowser(){
-        getDriver().quit();
+        webDriver.get().quit();
     }
 }

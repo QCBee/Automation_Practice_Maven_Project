@@ -52,7 +52,7 @@ public class TestNJListeners implements ITestListener {
     @Override
     public void onFinish(ITestContext context) {
         System.out.println("Executing Listener - onFinish");
-        WebDriverFactory.getDriver().quit();
+        WebDriverFactory.closeBrowser();
     }
 
     private File captureScreenshot() {
