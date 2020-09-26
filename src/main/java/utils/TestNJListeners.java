@@ -79,7 +79,7 @@ public class TestNJListeners implements ITestListener {
             String screenshotName = screenshotsFolder + "\\" + "Screenshot_" + java.time.LocalTime.now().toString().replace(":",".") + ".png";
             Files.copy(pathToScreenShot, Paths.get(screenshotName), StandardCopyOption.COPY_ATTRIBUTES);
             System.out.println("New screenshot for failure was added to screenshots folder");
-            System.out.println("Screenshot for failed test case has following name: " + "Sreenshot_" + java.time.LocalTime.now().toString().replace(":",".") + ".png");
+            System.out.println("Screenshot for failed test case has following name: " + "Screenshot_" + java.time.LocalTime.now().toString().replace(":",".") + ".png");
         } catch (IOException e) {
             System.out.println("Problems with adding screenshot to folder...");
             System.out.println("Screenshot was NOT added to folder");
