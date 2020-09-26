@@ -3,7 +3,7 @@
     <parameter name="browserName" value="Firefox"/>
     <test name="LoginTests">
         <classes>
-            <class name="login_tests.ResetLoginTest"/>
+<!--            <class name="login_tests.ResetLoginTest"/>-->
 <!--            <class name="login_tests.UnsuccessfulLoginTest"/>-->
             <class name="login_tests.SuccessfulLoginTest"/>
         </classes>
