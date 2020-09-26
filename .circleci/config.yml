@@ -10,8 +10,9 @@ jobs:
           name: run tests
           command: |
             mvn clean test
+            echo "screenshot" > ~/repo/screenshots
 
       - store_artifacts:
           path: ~/repo/screenshots
-          destination: Screenshot
+          destination: screenshots
           when: always
