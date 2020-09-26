@@ -11,7 +11,7 @@
 <!--    <test name="CreateTicketTest">-->
 <!--        <classes>-->
 <!--            <class name="create_issue_tests.CancelCreateIssueTest"/>-->
-<!--&lt;!&ndash;            <class name="create_issue_tests.SuccessfulCreateIssueTest"/>&ndash;&gt;-->
+<!--            <class name="create_issue_tests.SuccessfulCreateIssueTest"/>-->
 <!--        </classes>-->
 <!--    </test>-->
 <!--    <test name="TicketTest">-->

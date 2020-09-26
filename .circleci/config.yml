@@ -1,9 +1,16 @@
 version: 2.1
-
-orbs:
-  maven: circleci/maven@0.0.12
-
-workflows:
-  maven_test:
-    jobs:
-      - maven/test # checkout, build, test, and upload test results
+jobs:
+  build:
+    docker:
+      - image: circleci/openjdk:8u222-stretch-browsers
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: run tests
+          command: |
+            mvn clean test
+      - store_artifacts:
+          path: screenshots
+          destination: screenshots
+          when: always
