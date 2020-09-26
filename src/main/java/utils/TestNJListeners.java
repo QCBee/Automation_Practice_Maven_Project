@@ -6,7 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-import pages.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -18,6 +17,7 @@ public class TestNJListeners implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult result) {
+        System.out.println();
         System.out.println("Executing Listener - onTestStart");
         System.out.println("Following test case was started: " + result.getName());
     }
@@ -26,18 +26,21 @@ public class TestNJListeners implements ITestListener {
     public void onTestSuccess(ITestResult result) {
         System.out.println("Executing Listener - onTestSuccess");
         System.out.println("Following test case was passed: " + result.getName());
+        System.out.println();
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
         System.out.println("Execution Listener - onTestFailure");
         System.out.println("Following test case was failed: " + result.getName());
+        System.out.println();
         createScreenshot();
     }
 
     @Override
     public void onTestSkipped(ITestResult result) {
         System.out.println("Following test case was skipped: " + result.getName());
+        System.out.println();
     }
 
     @Override
