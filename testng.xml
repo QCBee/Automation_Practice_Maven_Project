@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="RegressionSuite" parallel="classes" thread-count="1">
-    <parameter name="browserName" value="Chrome"/>
+    <parameter name="browserName" value="Firefox"/>
     <test name="LoginTests">
         <classes>
             <class name="login_tests.ResetLoginTest"/>
