@@ -9,6 +9,7 @@ jobs:
       - run:
           name: run tests
           command: |
+            mvn clean install
             mvn clean test
       - store_artifacts:
           path: screenshots
