@@ -9,9 +9,9 @@ jobs:
       - run:
           name: run tests
           command: |
-            mvn clean install
             mvn clean test
-      - store_artifacts:
-          path: screenshots
-          destination: screenshots
-          when: always
+#            mvn clean test
+#      - store_artifacts:
+#          path: screenshots
+#          destination: screenshots
+#          when: always
