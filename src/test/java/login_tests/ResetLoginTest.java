@@ -35,7 +35,7 @@ public class ResetLoginTest {
 
     @AfterMethod
     public void tearDown(){
-        WebDriverFactory.closeBrowser();
+        WebDriverFactory.getDriver().quit();
     }
 
 }

@@ -99,6 +99,6 @@ public class CancelCreateIssueTest {
 
     @AfterMethod
     public void tearDown() {
-        WebDriverFactory.closeBrowser();
+        WebDriverFactory.getDriver().quit();
     }
 }

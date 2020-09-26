@@ -46,6 +46,6 @@ public class SuccessfulLoginTest {
 
     @AfterMethod
     public void tearDown(){
-        WebDriverFactory.closeBrowser();
+        WebDriverFactory.getDriver().quit();
     }
 }

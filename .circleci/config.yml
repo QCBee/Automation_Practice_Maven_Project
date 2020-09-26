@@ -10,8 +10,7 @@ jobs:
           name: run tests
           command: |
             mvn clean test
-#            mvn clean test
-#      - store_artifacts:
-#          path: screenshots
-#          destination: screenshots
-#          when: always
+      - store_artifacts:
+          path: screenshots
+          destination: screenshots
+          when: always

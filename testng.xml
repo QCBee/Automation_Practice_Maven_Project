@@ -1,10 +1,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="RegressionSuite" parallel="classes" thread-count="1">
-    <parameter name="browserName" value="Firefox"/>
+    <parameter name="browserName" value="Chrome"/>
     <test name="LoginTests">
         <classes>
 <!--            <class name="login_tests.ResetLoginTest"/>-->
-<!--            <class name="login_tests.UnsuccessfulLoginTest"/>-->
+            <class name="login_tests.UnsuccessfulLoginTest"/>
             <class name="login_tests.SuccessfulLoginTest"/>
         </classes>
     </test>

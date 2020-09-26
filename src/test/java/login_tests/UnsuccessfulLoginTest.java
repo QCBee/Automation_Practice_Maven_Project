@@ -48,6 +48,6 @@ public class UnsuccessfulLoginTest {
 
     @AfterMethod
     public void tearDown(){
-        WebDriverFactory.closeBrowser();
+        WebDriverFactory.getDriver().quit();
     }
 }

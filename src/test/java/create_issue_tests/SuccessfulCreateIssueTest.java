@@ -104,6 +104,6 @@ public class SuccessfulCreateIssueTest {
 
     @AfterMethod
     public void tearDown() {
-        WebDriverFactory.closeBrowser();
+        WebDriverFactory.getDriver().quit();
     }
 }
