@@ -30,6 +30,7 @@ public class ResetLoginTest {
         loginPage.navigateToLoginPage("https://jira.hillel.it/secure/Dashboard.jspa");
         loginPage.clickCanAccessAccountLink();
         Assert.assertTrue(forgotLoginPage.isForgotLoginFormShown());
+        loginPage.enterUserName(loginURL);
     }
 
     @AfterMethod
