@@ -25,6 +25,7 @@ public class TestNJListeners implements ITestListener {
     @Override
     public void onTestSuccess(ITestResult result) {
         System.out.println("Executing Listener - onTestSuccess");
+        createScreenshot();
         System.out.println("Following test case was passed: " + result.getName());
         System.out.println();
     }
@@ -32,9 +33,9 @@ public class TestNJListeners implements ITestListener {
     @Override
     public void onTestFailure(ITestResult result) {
         System.out.println("Execution Listener - onTestFailure");
+        createScreenshot();
         System.out.println("Following test case was failed: " + result.getName());
         System.out.println();
-        createScreenshot();
     }
 
     @Override
