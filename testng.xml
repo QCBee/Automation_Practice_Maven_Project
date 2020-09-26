@@ -8,19 +8,26 @@
             <class name="login_tests.SuccessfulLoginTest"/>
         </classes>
     </test>
-<!--    <test name="CreateTicketTest">-->
-<!--        <classes>-->
-<!--            <class name="create_issue_tests.CancelCreateIssueTest"/>-->
-<!--            <class name="create_issue_tests.SuccessfulCreateIssueTest"/>-->
-<!--        </classes>-->
-<!--    </test>-->
-<!--    <test name="TicketTest">-->
-<!--        <classes>-->
-<!--            <class name="TicketTest"/>-->
-<!--        </classes>-->
-<!--    </test>-->
-<!--    <listeners>-->
-<!--        <listener class-name="utils.TestNJListeners"/>-->
-<!--    </listeners>-->
+    <test name="CreateTicketTest">
+        <classes>
+            <class name="create_issue_tests.CancelCreateIssueTest"/>
+            <class name="create_issue_tests.SuccessfulCreateIssueTest"/>
+        </classes>
+    </test>
+    <test name="TicketTest">
+        <classes>
+            <class name="view_ticket_tests.ViewTicketTest"/>
+        </classes>
+    </test>
+    <test name="CommentTests">
+        <classes>
+            <class name="add_comment_to_ticket_tests.SuccessfulAddCommentTest"/>
+            <class name="delete_commet_from_ticket_tests.CancelDeletingCommentTest"/>
+            <class name="delete_commet_from_ticket_tests.DeleteCommentTest"/>
+        </classes>
+    </test>
+    <listeners>
+        <listener class-name="utils.TestNJListeners"/>
+    </listeners>
 
 </suite>
