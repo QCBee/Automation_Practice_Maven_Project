@@ -4,28 +4,17 @@ jobs:
     docker:
       - image: circleci/openjdk:8u222-stretch-browsers
     working_directory: ~/repo
-#    parallelism: 2
+
     steps:
       - checkout
       - run:
-          name: install allure CLI
-          command: |
-            sudo npm install -g allure-commandline --save-dev
-      - run:
           name: run tests
           command: |
-            mvn clean test --alluredir ~/repo/raw_test_result_json
-
-      - run:
-          name: report
-          command: |
-            allure generate -c ~/repo/raw_test_result_json -o ~/repo/test-reports
-
+            mvn clean test
       - store_artifacts:
-          path: screenshots
-          destination: test report
+          path: ~/repo/screenshots
+          destination: screenshot
           when: always
-
       - store_artifacts:
           path: test-reports
           destination: test-reports
