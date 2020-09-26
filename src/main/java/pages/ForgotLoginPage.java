@@ -16,7 +16,7 @@ public class ForgotLoginPage {
     }
 
     //List of used locators - locators for asserts
-    private By forgotLoginForm = By.id("forgot-login");
+    private By forgotLoginForm = By.id("forgot-login1");
     //correct locator = By.id("forgot-login")
 
     public boolean isForgotLoginFormShown(){
