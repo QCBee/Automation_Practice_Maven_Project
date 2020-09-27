@@ -77,7 +77,7 @@ public class TestNJListeners implements ITestListener {
         Path pathToScreenShot = Paths.get(screenshot.getPath());
 
         try {
-            String screenshotName = screenshotsFolder + "\\" + "Screenshot_" + java.time.LocalTime.now().toString().replace(":",".") + ".png";
+            String screenshotName = screenshotsFolder + "/" + "Screenshot_" + java.time.LocalTime.now().toString().replace(":",".") + ".png";
             Files.copy(pathToScreenShot, Paths.get(screenshotName), StandardCopyOption.COPY_ATTRIBUTES);
             System.out.println("New screenshot for failure was added to screenshots folder");
             System.out.println("Screenshot for failed test case has following name: " + "Screenshot_" + java.time.LocalTime.now().toString().replace(":",".") + ".png");
