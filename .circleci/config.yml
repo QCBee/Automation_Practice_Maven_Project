@@ -7,15 +7,19 @@ jobs:
     steps:
       - checkout
       - run:
-          name: install tree
+          name: Install tree
           command: |
             sudo apt install tree
       - run:
-          name: run tests
+          name: Install Allure
+          command: |
+            sudo apt install allure
+      - run:
+          name: Run tests
           command: |
             mvn clean test
       - run:
-          name: show folders
+          name: Show folders with files
           command: |
             tree -a
 
