@@ -7,11 +7,19 @@ jobs:
     steps:
       - checkout
       - run:
+          name: install tree
+          command: |
+            sudo apt install tree
+      - run:
           name: run tests
           command: |
             mvn clean test
+      - run:
+          name: show folders
+          command: |
+            tree -a
 
       - store_artifacts:
-          path: screenshots
+          path: /screenshots
           destination: test-reports
           when: always
