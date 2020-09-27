@@ -64,7 +64,7 @@ public class TestNJListeners implements ITestListener {
     }
 
     private void createScreenshot() {
-        File screenshotsFolder = new File(System.getProperty("user.dir") + "/screenshots");
+        File screenshotsFolder = new File(System.getProperty("user.dir") + "/screens");
 
         if (!screenshotsFolder.exists()) {
             System.out.println("Creating folder for collecting screenshots...");
