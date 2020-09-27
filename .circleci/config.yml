@@ -11,10 +11,6 @@ jobs:
           command: |
             sudo apt install tree
       - run:
-          name: Install Allure
-          command: |
-            sudo apt install allure
-      - run:
           name: Run tests
           command: |
             mvn clean test
