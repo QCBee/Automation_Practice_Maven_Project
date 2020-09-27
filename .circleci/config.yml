@@ -20,6 +20,6 @@ jobs:
             tree -a
 
       - store_artifacts:
-          path: /screens
+          path: /screenshots
           destination: test-reports
           when: always
