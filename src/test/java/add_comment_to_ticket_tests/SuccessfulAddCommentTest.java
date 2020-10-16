@@ -2,7 +2,6 @@ package add_comment_to_ticket_tests;
 
 import creds_and_pathes.Credentials;
 import creds_and_pathes.UrlPathes;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import pages.DeleteCommentPage;
@@ -13,7 +12,6 @@ import test_data.CommentTestData;
 import utils.WebDriverFactory;
 
 public class SuccessfulAddCommentTest {
-    WebDriver driver =null;
     LoginPage loginPage = null;
     HomePage homePage = null;
     TicketPage ticketPage = null;
@@ -23,11 +21,10 @@ public class SuccessfulAddCommentTest {
     @BeforeTest
     public void setUp(String browserName) {
         WebDriverFactory.createInstance(browserName);
-        driver = WebDriverFactory.getDriver();
-        loginPage = new LoginPage(driver);
-        homePage = new HomePage(driver);
-        ticketPage = new TicketPage(driver);
-        deleteCommentPage = new DeleteCommentPage(driver);
+        loginPage = new LoginPage(WebDriverFactory.getDriver());
+        homePage = new HomePage(WebDriverFactory.getDriver());
+        ticketPage = new TicketPage(WebDriverFactory.getDriver());
+        deleteCommentPage = new DeleteCommentPage(WebDriverFactory.getDriver());
 
         loginPage.navigateToLoginPage(UrlPathes.loginUrl);
         loginPage.enterUserName(Credentials.userName);
@@ -68,6 +65,6 @@ public class SuccessfulAddCommentTest {
 
     @AfterTest
     public void tearDown(){
-        driver.quit();
+        WebDriverFactory.getDriver().quit();
     }
 }

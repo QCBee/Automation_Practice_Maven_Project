@@ -2,34 +2,29 @@ package delete_commet_from_ticket_tests;
 
 import creds_and_pathes.Credentials;
 import creds_and_pathes.UrlPathes;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import pages.DeleteCommentPage;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.TicketPage;
+import test_data.CommentTestData;
 import utils.WebDriverFactory;
 
 public class DeleteCommentTest {
-    WebDriver driver =null;
     LoginPage loginPage = null;
     HomePage homePage = null;
     TicketPage ticketPage = null;
     DeleteCommentPage deleteCommentPage= null;
 
-    //Test data for tests with comments
-    String commentValue = "I am a test comment";
-
     @Parameters({"browserName"})
     @BeforeTest
     public void setUp(String browserName) {
         WebDriverFactory.createInstance(browserName);
-        driver = WebDriverFactory.getDriver();
-        loginPage = new LoginPage(driver);
-        homePage = new HomePage(driver);
-        ticketPage = new TicketPage(driver);
-        deleteCommentPage = new DeleteCommentPage(driver);
+        loginPage = new LoginPage(WebDriverFactory.getDriver());
+        homePage = new HomePage(WebDriverFactory.getDriver());
+        ticketPage = new TicketPage(WebDriverFactory.getDriver());
+        deleteCommentPage = new DeleteCommentPage(WebDriverFactory.getDriver());
 
         loginPage.navigateToLoginPage(UrlPathes.loginUrl);
         loginPage.enterUserName(Credentials.userName);
@@ -54,7 +49,7 @@ public class DeleteCommentTest {
         ticketPage.selectTextModeForComment();
         Assert.assertTrue(ticketPage.isTextModeForCommentSelected());
 
-        ticketPage.enterComment(commentValue);
+        ticketPage.enterComment(CommentTestData.NEW_COMMENT_VALUE);
         Assert.assertTrue(ticketPage.isAddCommentButtonEnabled());
 
         ticketPage.clickAddCommentButton();
@@ -75,6 +70,6 @@ public class DeleteCommentTest {
 
     @AfterTest
     public void tearDown(){
-        driver.quit();
+        WebDriverFactory.getDriver().quit();
     }
 }

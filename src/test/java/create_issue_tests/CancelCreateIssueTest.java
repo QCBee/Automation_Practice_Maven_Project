@@ -8,19 +8,13 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pages.*;
+import test_data.IssueTestData;
 import utils.WebDriverFactory;
 
 public class CancelCreateIssueTest {
     LoginPage loginPage = null;
     HomePage homePage = null;
     CreateIssuePage createIssuePage = null;
-
-    //Test data for create issue tests
-    String projectNameValue = "Webinar (WEBINAR)";
-    String issueTypeValue = "Task";
-    String summaryValue = "Test Summary";
-    String reporterValue = "webinar5";
-
 
     @Parameters({"browserName"})
     @BeforeMethod
@@ -44,15 +38,15 @@ public class CancelCreateIssueTest {
         homePage.clickCreateIssueButton();
         Assert.assertTrue(createIssuePage.isCreateIssuePopUpShown());
 
-        createIssuePage.enterProject(projectNameValue);
+        createIssuePage.enterProject(IssueTestData.PROJECT_NAME_VALUE);
         Assert.assertTrue(createIssuePage.isTypeIssueInputEnabled());
 
-        createIssuePage.enterTypeIssue(issueTypeValue);
+        createIssuePage.enterTypeIssue(IssueTestData.ISSUE_TYPE_VALUE);
         Assert.assertTrue(createIssuePage.isSummaryInputEnabled());
 
-        createIssuePage.enterSummary(summaryValue);
+        createIssuePage.enterSummary(IssueTestData.SUMMARY_VALUE);
 
-        createIssuePage.enterReporter(reporterValue);
+        createIssuePage.enterReporter(IssueTestData.REPORTER_VALUE);
 
         createIssuePage.clickCancelButton();
 
@@ -65,24 +59,24 @@ public class CancelCreateIssueTest {
         homePage.clickCreateIssueButton();
         Assert.assertTrue(createIssuePage.isCreateIssuePopUpShown());
 
-        createIssuePage.enterProject(projectNameValue);
+        createIssuePage.enterProject(IssueTestData.PROJECT_NAME_VALUE);
         Assert.assertTrue(createIssuePage.isTypeIssueInputEnabled());
 
-        createIssuePage.enterTypeIssue(issueTypeValue);
+        createIssuePage.enterTypeIssue(IssueTestData.ISSUE_TYPE_VALUE);
         Assert.assertTrue(createIssuePage.isSummaryInputEnabled());
 
-        createIssuePage.enterSummary(summaryValue);
+        createIssuePage.enterSummary(IssueTestData.SUMMARY_VALUE);
 
-        createIssuePage.enterReporter(reporterValue);
+        createIssuePage.enterReporter(IssueTestData.REPORTER_VALUE);
 
         createIssuePage.clickCancelButton();
 
         createIssuePage.dismissAlertWithRetry(AttempsType.SHORT_ATTEMPT.getAttemptAmount(), TimeOutTypes.LOW.getTimeOutInSec());
         Assert.assertTrue(createIssuePage.isCreateIssuePopUpShown());
-        Assert.assertTrue(createIssuePage.doProjectNameValueMatch(projectNameValue));
-        Assert.assertTrue(createIssuePage.doTypeIssueValueMatch(issueTypeValue));
-        Assert.assertTrue(createIssuePage.doSummaryValueMatch(summaryValue));
-        Assert.assertTrue(createIssuePage.doReporterValueMatch(reporterValue));
+        Assert.assertTrue(createIssuePage.doProjectNameValueMatch(IssueTestData.PROJECT_NAME_VALUE));
+        Assert.assertTrue(createIssuePage.doTypeIssueValueMatch(IssueTestData.ISSUE_TYPE_VALUE));
+        Assert.assertTrue(createIssuePage.doSummaryValueMatch(IssueTestData.SUMMARY_VALUE));
+        Assert.assertTrue(createIssuePage.doReporterValueMatch(IssueTestData.REPORTER_VALUE));
     }
 
     @Test

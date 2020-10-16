@@ -9,35 +9,23 @@ import pages.DeleteCommentPage;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.TicketPage;
+import test_data.CommentTestData;
 import utils.WebDriverFactory;
 
 public class CancelDeletingCommentTest {
-    WebDriver driver =null;
     LoginPage loginPage = null;
     HomePage homePage = null;
     TicketPage ticketPage = null;
     DeleteCommentPage deleteCommentPage= null;
 
-    //Test data for preconditions
-//    String loginURL = "https://jira.hillel.it/secure/Dashboard.jspa";
-//    String validUsernameTestData = "webinar5";
-//    String validUserPasswordTestData = "webinar5";
-//
-//    //Test data for view ticket test
-//    String ticketUrl = "https://jira.hillel.it/browse/WEBINAR-12303";
-
-    //Test data for tests with comments
-    String commentValue = "I am a test comment";
-
     @Parameters({"browserName"})
     @BeforeTest
     public void setUp(String browserName) {
         WebDriverFactory.createInstance(browserName);
-        driver = WebDriverFactory.getDriver();
-        loginPage = new LoginPage(driver);
-        homePage = new HomePage(driver);
-        ticketPage = new TicketPage(driver);
-        deleteCommentPage = new DeleteCommentPage(driver);
+        loginPage = new LoginPage(WebDriverFactory.getDriver());
+        homePage = new HomePage(WebDriverFactory.getDriver());
+        ticketPage = new TicketPage(WebDriverFactory.getDriver());
+        deleteCommentPage = new DeleteCommentPage(WebDriverFactory.getDriver());
 
         loginPage.navigateToLoginPage(UrlPathes.loginUrl);
         loginPage.enterUserName(Credentials.userName);
@@ -62,7 +50,7 @@ public class CancelDeletingCommentTest {
         ticketPage.selectTextModeForComment();
         Assert.assertTrue(ticketPage.isTextModeForCommentSelected());
 
-        ticketPage.enterComment(commentValue);
+        ticketPage.enterComment(CommentTestData.NEW_COMMENT_VALUE);
         Assert.assertTrue(ticketPage.isAddCommentButtonEnabled());
 
         ticketPage.clickAddCommentButton();
@@ -105,7 +93,7 @@ public class CancelDeletingCommentTest {
         ticketPage.selectTextModeForComment();
         Assert.assertTrue(ticketPage.isTextModeForCommentSelected());
 
-        ticketPage.enterComment(commentValue);
+        ticketPage.enterComment(CommentTestData.NEW_COMMENT_VALUE);
         Assert.assertTrue(ticketPage.isAddCommentButtonEnabled());
 
         ticketPage.clickCancelButton();
@@ -133,7 +121,7 @@ public class CancelDeletingCommentTest {
         ticketPage.selectTextModeForComment();
         Assert.assertTrue(ticketPage.isTextModeForCommentSelected());
 
-        ticketPage.enterComment(commentValue);
+        ticketPage.enterComment(CommentTestData.NEW_COMMENT_VALUE);
         Assert.assertTrue(ticketPage.isAddCommentButtonEnabled());
 
         ticketPage.clickCancelButton();
@@ -148,6 +136,6 @@ public class CancelDeletingCommentTest {
 
     @AfterTest
     public void tearDown(){
-        driver.quit();
+        WebDriverFactory.getDriver().quit();
     }
 }

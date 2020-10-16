@@ -12,7 +12,6 @@ import pages.TicketPage;
 import utils.WebDriverFactory;
 
 public class ViewTicketTest {
-    WebDriver driver =null;
     LoginPage loginPage = null;
     HomePage homePage = null;
     TicketPage ticketPage = null;
@@ -22,11 +21,10 @@ public class ViewTicketTest {
     @BeforeTest
     public void setUp(String browserName) {
         WebDriverFactory.createInstance(browserName);
-        driver = WebDriverFactory.getDriver();
-        loginPage = new LoginPage(driver);
-        homePage = new HomePage(driver);
-        ticketPage = new TicketPage(driver);
-        deleteCommentPage = new DeleteCommentPage(driver);
+        loginPage = new LoginPage(WebDriverFactory.getDriver());
+        homePage = new HomePage(WebDriverFactory.getDriver());
+        ticketPage = new TicketPage(WebDriverFactory.getDriver());
+        deleteCommentPage = new DeleteCommentPage(WebDriverFactory.getDriver());
 
         loginPage.navigateToLoginPage(UrlPathes.loginUrl);
         loginPage.enterUserName(Credentials.userName);
@@ -98,7 +96,7 @@ public class ViewTicketTest {
 
     @AfterTest
     public void tearDown(){
-        driver.quit();
+        WebDriverFactory.getDriver().quit();
     }
 }
 

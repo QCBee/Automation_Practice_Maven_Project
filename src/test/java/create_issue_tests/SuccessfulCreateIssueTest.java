@@ -8,6 +8,7 @@ import pages.CreateIssuePage;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.TicketPage;
+import test_data.IssueTestData;
 import utils.WebDriverFactory;
 
 public class SuccessfulCreateIssueTest {
@@ -15,14 +16,6 @@ public class SuccessfulCreateIssueTest {
     HomePage homePage = null;
     TicketPage ticketPage = null;
     CreateIssuePage createIssuePage = null;
-
-    //Test data for create issue tests
-    String projectNameValue = "Webinar (WEBINAR)";
-    String issueTypeValue = "Task";
-    String summaryValue = "Test Summary";
-    String reporterValue = "webinar5";
-    String descriptionValue = "Test description";
-    String priorityValue = "Lowest";
 
     @Parameters({"browserName"})
     @BeforeMethod
@@ -49,10 +42,10 @@ public class SuccessfulCreateIssueTest {
         Assert.assertTrue(createIssuePage.isTypeIssueInputEnabled());
         Assert.assertTrue(createIssuePage.isSummaryInputEnabled());
 
-        createIssuePage.enterProject(projectNameValue);
-        createIssuePage.enterTypeIssue(issueTypeValue);
-        createIssuePage.enterSummary(summaryValue);
-        createIssuePage.enterReporter(reporterValue);
+        createIssuePage.enterProject(IssueTestData.PROJECT_NAME_VALUE);
+        createIssuePage.enterTypeIssue(IssueTestData.ISSUE_TYPE_VALUE);
+        createIssuePage.enterSummary(IssueTestData.SUMMARY_VALUE);
+        createIssuePage.enterReporter(IssueTestData.REPORTER_VALUE);
         createIssuePage.clickCreateButton();
         Assert.assertTrue(homePage.isIssueCreateNotificationShown());
 
@@ -70,21 +63,21 @@ public class SuccessfulCreateIssueTest {
         homePage.clickCreateIssueButton();
         Assert.assertTrue(createIssuePage.isCreateIssuePopUpShown());
 
-        createIssuePage.enterProject(projectNameValue);
+        createIssuePage.enterProject(IssueTestData.PROJECT_NAME_VALUE);
         Assert.assertTrue(createIssuePage.isTypeIssueInputEnabled());
 
-        createIssuePage.enterTypeIssue(issueTypeValue);
+        createIssuePage.enterTypeIssue(IssueTestData.ISSUE_TYPE_VALUE);
         Assert.assertTrue(createIssuePage.isSummaryInputEnabled());
 
-        createIssuePage.enterSummary(summaryValue);
+        createIssuePage.enterSummary(IssueTestData.SUMMARY_VALUE);
 
-        createIssuePage.enterReporter(reporterValue);
+        createIssuePage.enterReporter(IssueTestData.REPORTER_VALUE);
 
         createIssuePage.selectTextModeForDescriptionInput();
 
-        createIssuePage.enterDescription(descriptionValue);
+        createIssuePage.enterDescription(IssueTestData.DESCRIPTION_VALUE);
 
-        createIssuePage.enterPriorityInput(priorityValue);
+        createIssuePage.enterPriorityInput(IssueTestData.PRIORITY_VALUE);
 
         createIssuePage.clickCreateButton();
         Assert.assertTrue(homePage.isIssueCreateNotificationShown());
