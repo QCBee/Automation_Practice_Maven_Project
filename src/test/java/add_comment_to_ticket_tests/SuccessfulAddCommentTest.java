@@ -9,6 +9,7 @@ import pages.DeleteCommentPage;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.TicketPage;
+import test_data.CommentTestData;
 import utils.WebDriverFactory;
 
 public class SuccessfulAddCommentTest {
@@ -17,9 +18,6 @@ public class SuccessfulAddCommentTest {
     HomePage homePage = null;
     TicketPage ticketPage = null;
     DeleteCommentPage deleteCommentPage= null;
-
-    //Test data for tests with comments
-    String commentValue = "I am a test comment";
 
     @Parameters({"browserName"})
     @BeforeTest
@@ -54,7 +52,7 @@ public class SuccessfulAddCommentTest {
         ticketPage.selectTextModeForComment();
         Assert.assertTrue(ticketPage.isTextModeForCommentSelected());
 
-        ticketPage.enterComment(commentValue);
+        ticketPage.enterComment(CommentTestData.NEW_COMMENT_VALUE);
         Assert.assertTrue(ticketPage.isAddCommentButtonEnabled());
 
         ticketPage.clickAddCommentButton();

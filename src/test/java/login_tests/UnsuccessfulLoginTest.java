@@ -4,7 +4,6 @@ import creds_and_pathes.UrlPathes;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import pages.LoginPage;
-import sun.rmi.runtime.Log;
 import test_data.LoginTestData;
 import utils.WebDriverFactory;
 
