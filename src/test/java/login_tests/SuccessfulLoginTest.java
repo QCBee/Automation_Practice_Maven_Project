@@ -1,23 +1,16 @@
 package login_tests;
 
+import creds_and_pathes.UrlPathes;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pages.HomePage;
 import pages.LoginPage;
+import test_data.LoginTestData;
 import utils.WebDriverFactory;
 
 public class SuccessfulLoginTest {
     LoginPage loginPage = null;
     HomePage homePage = null;
-
-    //Test data locators
-    String loginURL = "https://jira.hillel.it/secure/Dashboard.jspa";
-    String validUsernameTestData = "webinar5";
-    String validUserPasswordTestData = "webinar5";
 
     @Parameters({"browserName"})
     @BeforeMethod
@@ -31,13 +24,13 @@ public class SuccessfulLoginTest {
     @DataProvider(name = "SuccessFullLoginsTestDataList")
     public Object[][] createData(){
         return new Object[][]{
-                {validUsernameTestData, validUserPasswordTestData},
+                {LoginTestData.VALID_USER_NAME,LoginTestData.VALID_USER_PASS},
         };
     }
 
     @Test(dataProvider = "SuccessFullLoginsTestDataList")
     public void successfulLoginTest(String userName, String userPassword){
-        loginPage.navigateToLoginPage(loginURL);
+        loginPage.navigateToLoginPage(UrlPathes.loginUrl);
         loginPage.enterUserName(userName);
         loginPage.enterUserPassword(userPassword);
         loginPage.clickLoginButton();

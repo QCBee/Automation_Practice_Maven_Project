@@ -1,21 +1,15 @@
 package login_tests;
 
+import creds_and_pathes.UrlPathes;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import pages.LoginPage;
+import sun.rmi.runtime.Log;
+import test_data.LoginTestData;
 import utils.WebDriverFactory;
 
 public class UnsuccessfulLoginTest {
     LoginPage loginPage = null;
-
-    //Test data locators
-    String loginURL = "https://jira.hillel.it/secure/Dashboard.jspa";
-    String validUsernameTestData = "webinar5";
-    String validUserPasswordTestData = "webinar5";
-    String invalidUserNameTestData = "invalidName";
-    String invalidUserPasswordTestData = "invalidPass";
-    String emptyUserNameTestData = "";
-    String emptyUserPasswordTestData = "";
 
     @Parameters({"browserName"})
     @BeforeMethod
@@ -28,17 +22,17 @@ public class UnsuccessfulLoginTest {
     @DataProvider(name = "UnsuccessfullLoginsTestDataList")
     public Object[][] createData(){
         return new Object[][]{
-                {validUsernameTestData, invalidUserPasswordTestData},
-                {invalidUserNameTestData, validUserPasswordTestData},
-                {validUsernameTestData, emptyUserPasswordTestData},
-                {emptyUserNameTestData, validUserPasswordTestData},
-                {emptyUserNameTestData, emptyUserPasswordTestData}
+                {LoginTestData.VALID_USER_NAME, LoginTestData.INVALID_USER_PASS},
+                {LoginTestData.INVALID_USER_NAME, LoginTestData.VALID_USER_PASS},
+                {LoginTestData.VALID_USER_NAME, LoginTestData.EMPTY_USER_PASS},
+                {LoginTestData.EMPTY_USER_NAME, LoginTestData.VALID_USER_PASS},
+                {LoginTestData.EMPTY_USER_NAME, LoginTestData.EMPTY_USER_PASS}
         };
     }
 
     @Test(dataProvider = "UnsuccessfullLoginsTestDataList")
     public void unsuccessfulLoginTest(String userName, String userPassword){
-        loginPage.navigateToLoginPage(loginURL);
+        loginPage.navigateToLoginPage(UrlPathes.loginUrl);
         loginPage.enterUserName(userName);
         loginPage.enterUserPassword(userPassword);
         loginPage.clickLoginButton();

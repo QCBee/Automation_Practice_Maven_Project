@@ -1,5 +1,7 @@
 package create_issue_tests;
 
+import creds_and_pathes.Credentials;
+import creds_and_pathes.UrlPathes;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -12,11 +14,6 @@ public class CancelCreateIssueTest {
     LoginPage loginPage = null;
     HomePage homePage = null;
     CreateIssuePage createIssuePage = null;
-
-    //Test data for preconditions
-    String loginURL = "https://jira.hillel.it/secure/Dashboard.jspa";
-    String validUsernameTestData = "webinar5";
-    String validUserPasswordTestData = "webinar5";
 
     //Test data for create issue tests
     String projectNameValue = "Webinar (WEBINAR)";
@@ -34,9 +31,9 @@ public class CancelCreateIssueTest {
         homePage = new HomePage(WebDriverFactory.getDriver());
         createIssuePage = new CreateIssuePage(WebDriverFactory.getDriver());
 
-        loginPage.navigateToLoginPage(loginURL);
-        loginPage.enterUserName(validUsernameTestData);
-        loginPage.enterUserPassword(validUserPasswordTestData);
+        loginPage.navigateToLoginPage(UrlPathes.loginUrl);
+        loginPage.enterUserName(Credentials.userName);
+        loginPage.enterUserPassword(Credentials.userPass);
         loginPage.clickLoginButton();
         Assert.assertTrue(homePage.isUserProfileIconShown());
     }

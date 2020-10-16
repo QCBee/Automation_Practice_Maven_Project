@@ -1,5 +1,7 @@
 package view_ticket_tests;
 
+import creds_and_pathes.Credentials;
+import creds_and_pathes.UrlPathes;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -16,15 +18,6 @@ public class ViewTicketTest {
     TicketPage ticketPage = null;
     DeleteCommentPage deleteCommentPage= null;
 
-    //Test data for preconditions
-    String loginURL = "https://jira.hillel.it/secure/Dashboard.jspa";
-    String validUsernameTestData = "webinar5";
-    String validUserPasswordTestData = "webinar5";
-
-    //Test data for view ticket test
-    String ticketUrl = "https://jira.hillel.it/browse/WEBINAR-12303";
-
-
     @Parameters({"browserName"})
     @BeforeTest
     public void setUp(String browserName) {
@@ -35,9 +28,9 @@ public class ViewTicketTest {
         ticketPage = new TicketPage(driver);
         deleteCommentPage = new DeleteCommentPage(driver);
 
-        loginPage.navigateToLoginPage(loginURL);
-        loginPage.enterUserName(validUsernameTestData);
-        loginPage.enterUserPassword(validUserPasswordTestData);
+        loginPage.navigateToLoginPage(UrlPathes.loginUrl);
+        loginPage.enterUserName(Credentials.userName);
+        loginPage.enterUserPassword(Credentials.userPass);
         loginPage.clickLoginButton();
         Assert.assertTrue(homePage.isUserProfileIconShown());
     }
@@ -45,7 +38,7 @@ public class ViewTicketTest {
     @Test
     public void openTicketTest(){
         //Open ticket by url
-        ticketPage.navigateToTicketPage(ticketUrl);
+        ticketPage.navigateToTicketPage(UrlPathes.ticketUrl);
         Assert.assertTrue(ticketPage.isProjectAvatarIconShown());
         Assert.assertTrue(ticketPage.isIssueLinkShown());
 

@@ -11,15 +11,26 @@ jobs:
           command: |
             sudo apt install tree
       - run:
+          name: Install Allure CLI
+          command: |
+            sudo npm install -g allure-command-line --save-dev
+      - run:
           name: Run tests
           command: |
             mvn clean test
       - run:
+          name: Generate report
+          command: |
+            allure generate -c ~/repo/raw_test_result_json -o ~/repo/test-reports
+      - run:
           name: Show folders with files
           command: |
             tree -a
-
       - store_artifacts:
           path: screenshots
+          destination: test-reports
+          when: always
+      - store_artifacts:
+          path: test-reports
           destination: test-reports
           when: always

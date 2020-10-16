@@ -25,6 +25,7 @@ public class TestNJListeners implements ITestListener {
     @Override
     public void onTestSuccess(ITestResult result) {
         System.out.println("Executing Listener - onTestSuccess");
+        createScreenshot();
         System.out.println("Following test case was passed: " + result.getName());
         System.out.println();
     }
@@ -79,8 +80,8 @@ public class TestNJListeners implements ITestListener {
             String separator = System.getProperty("file.separator");
             String screenshotName = screenshotsFolder + separator + "Screenshot_" + java.time.LocalTime.now().toString().replace(":",".") + ".png";
             Files.copy(pathToScreenShot, Paths.get(screenshotName), StandardCopyOption.COPY_ATTRIBUTES);
-            System.out.println("New screenshot for failure was added to screenshots folder");
-            System.out.println("Screenshot for failed test case has following name: " + "Screenshot_" + java.time.LocalTime.now().toString().replace(":",".") + ".png");
+            System.out.println("New screenshot was added to screenshots folder");
+            System.out.println("Screenshot for test case has following name: " + "Screenshot_" + java.time.LocalTime.now().toString().replace(":",".") + ".png");
         } catch (IOException e) {
             System.out.println("Problems with adding screenshot to folder...");
             System.out.println("Screenshot was NOT added to folder");

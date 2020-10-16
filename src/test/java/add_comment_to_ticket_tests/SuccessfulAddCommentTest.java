@@ -1,5 +1,7 @@
 package add_comment_to_ticket_tests;
 
+import creds_and_pathes.Credentials;
+import creds_and_pathes.UrlPathes;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -16,14 +18,6 @@ public class SuccessfulAddCommentTest {
     TicketPage ticketPage = null;
     DeleteCommentPage deleteCommentPage= null;
 
-    //Test data for preconditions
-    String loginURL = "https://jira.hillel.it/secure/Dashboard.jspa";
-    String validUsernameTestData = "webinar5";
-    String validUserPasswordTestData = "webinar5";
-
-    //Test data for view ticket test
-    String ticketUrl = "https://jira.hillel.it/browse/WEBINAR-12303";
-
     //Test data for tests with comments
     String commentValue = "I am a test comment";
 
@@ -37,16 +31,16 @@ public class SuccessfulAddCommentTest {
         ticketPage = new TicketPage(driver);
         deleteCommentPage = new DeleteCommentPage(driver);
 
-        loginPage.navigateToLoginPage(loginURL);
-        loginPage.enterUserName(validUsernameTestData);
-        loginPage.enterUserPassword(validUserPasswordTestData);
+        loginPage.navigateToLoginPage(UrlPathes.loginUrl);
+        loginPage.enterUserName(Credentials.userName);
+        loginPage.enterUserPassword(Credentials.userPass);
         loginPage.clickLoginButton();
         Assert.assertTrue(homePage.isUserProfileIconShown());
     }
 
     @Test
     public void createCommentToTicketTest(){
-        ticketPage.navigateToTicketPage(ticketUrl);
+        ticketPage.navigateToTicketPage(UrlPathes.ticketUrl);
         Assert.assertTrue(ticketPage.isCommentTabSelected());
         Assert.assertTrue(ticketPage.isAddCommentFooterButtonEnabled());
         Assert.assertTrue(ticketPage.isAnyCommentNotAdded());

@@ -1,5 +1,6 @@
 package login_tests;
 
+import creds_and_pathes.UrlPathes;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -13,9 +14,6 @@ public class ResetLoginTest {
     LoginPage loginPage = null;
     ForgotLoginPage forgotLoginPage = null;
 
-    //Test data locators
-    String loginURL = "https://jira.hillel.it/secure/Dashboard.jspa";
-
     @Parameters({"browserName"})
     @BeforeMethod
     public void setUp(String browserName) {
@@ -27,7 +25,7 @@ public class ResetLoginTest {
 
     @Test
     public void openResetPasswordPageFromLoginFormTest(){
-        loginPage.navigateToLoginPage("https://jira.hillel.it/secure/Dashboard.jspa");
+        loginPage.navigateToLoginPage(UrlPathes.loginUrl);
         loginPage.clickCanAccessAccountLink();
         Assert.assertTrue(forgotLoginPage.isForgotLoginFormShown());
     }
